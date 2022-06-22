@@ -12,23 +12,23 @@
 	<div class="rounded-3xl shadow-sm -space-y-px">
 		<div>
 			<label for="nom" class="sr-only">Utilisateur (login)</label>
-			<input
-			id="login"
-			name="nom"
-			type="text"
-			required
-			class="appearance-none rounded-t-xl relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-			placeholder="nom"/>
+				<input
+				id="login"
+				name="nom"
+				type="text"
+				required
+				class="appearance-none rounded-t-xl relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+				placeholder="nom"/>
 		</div>
 		<div>
 			<label for="password" class="sr-only">Password</label>
-			<input
-			id="passwd"
-			name="password1"
-			type="password"
-			required
-			class="appearance-none rounded-b-xl relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-			placeholder="Mot de passe"/>
+				<input
+				id="passwd"
+				name="password1"
+				type="password"
+				required
+				class="appearance-none rounded-b-xl relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+				placeholder="Mot de passe"/>
 		</div>
 	<!-- <div>
 		<label for="password" class="sr-only">Password</label>
