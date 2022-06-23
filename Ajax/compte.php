@@ -90,7 +90,6 @@ function login(){
 
 		success: function(response) {
       if(response["status"] == 1){
-        console.log(3);
         iziToast.show({
 				backgroundColor: 'green',
 				closeOnClick: true,
