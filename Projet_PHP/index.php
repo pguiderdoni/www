@@ -1,5 +1,7 @@
-<?php session_start(); ?> 
-<?php  setcookie('user_id', '', time()+3600*24,'','',false,true); ?>
+<?php session_start();
+
+print_r($_SESSION);
+?> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,63 +18,37 @@
     
 </head>
 <body>
+  <?php include 'C:\wamp64\www\Projet_PHP\function.php'; ?>
 
 
 <?php
-$passwordUser = 0000;
+$passwordUser = "222";
 $loginUser = 'pierre@gmail.com';
 
+$log = 'log.txt';
 $login = '';
 $nom = '';
 $password = '';
 $isUserLogged = false;
-$session_id = session_id();
-$_SESSION['nom'] = $nom;
-$_SESSION['email'] = $login;
 
-function is_logged(){
-        return isset($_SESSION['login']);
-}
-function get_login(){
-    if(is_logged()){
-        return $_SESSION['login'];
-    }
-}
-function explode_cookie(){
-    $exploded_cookie = explode("|",$_COOKIE['user_id']);
-        return $exploded_cookie;
-}
-function check_password($exploded_cookie, $password){
-    if ($exploded_cookie[1] == password_verify($password, $hash)){
-        return $exploded_cookie;
-    }
-    else{
-        echo '<p>Une erreur est survenue</p>';
-    }
-}
 
 if (isset( $_POST['login']) && isset($_POST['password1']) && isset($_POST['password2'])) {
-
   if ($_POST['password1'] == $_POST['password2']){
-
     if ($_POST['password1'] == $passwordUser && $_POST['login'] = $loginUser){
       $password = $_POST['password1'];
       $login = $_POST['login'];
       $nom = $_POST['nom'];
-      $_COOKIE['user_id'] = $login.'|'.password_hash($password, PASSWORD_BCRYPT);
-      $isUserLogged = true;
+      $_SESSION['nom'] = $nom;
+      $_SESSION['login'] = $login;
+      file_put_contents($log, $_SESSION['login'].date(" d-m-Y H:i:s \n"), FILE_APPEND);
     } 
-
     else{
         echo 'Informations incorrectes!';         
-    }
-    
+    } 
   } 
-  
 }
-elseif (isset($_GET['disconnect']) && $_GET['disconnect'] == 0){
-    setcookie('user_id',"",0);
-    unset($_SESSION['login']);
+if (isset($_GET['disconnect']) && $_GET['disconnect'] == 0){
+    session_destroy();
     header('Location: /Projet_PHP/index.php');
     exit();
 
@@ -81,8 +57,10 @@ elseif (isset($_GET['disconnect']) && $_GET['disconnect'] == 0){
 ?>
 
 
-<?php if(!$isUserLogged ){ ?>
-  <div class="mx-96 my-60 flex-auto items-center w-60"><form action="compte.php" class="mt-8 space-y-6" method="POST">
+<?php 
+ if(!is_logged()){ ?>
+  <div class="mx-96 my-60 flex-auto items-center w-60">
+    <form action="index.php" class="mt-8 space-y-6" method="POST">
 <div class="rounded-md shadow-sm -space-y-px">
   <div>
     <label for="login" class="sr-only">login (Email)</label>
@@ -149,7 +127,8 @@ elseif (isset($_GET['disconnect']) && $_GET['disconnect'] == 0){
 </form>
 </div>
 <?php }else{
-    header('Location: /Projet_PHP/compte.php');   
+    header('Location: /Projet_PHP/compte.php'); 
+    echo $_SESSION['login'];  
 } ?>
 
 </body>

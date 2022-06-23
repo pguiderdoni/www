@@ -1,4 +1,7 @@
-<?php session_start(); ?> 
+<?php session_start(); 
+echo $_SESSION['login']; 
+
+?> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,7 +28,7 @@
         class="flex bg-gray-50 px-2 py-5 grid grid-cols-3 gap-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
       >
         <dt class="text-sm font-medium text-black pt-2 font-bold">Nom :</dt>
-        <dd class="mt-1 text-sm text-black pt-1">Bonjour <?php echo $_SESSION['nom']; ?> !</dd>
+        <dd class="mt-1 text-sm text-black pt-1">Bonjour !</dd>
       </div>
       <hr />
       <div
@@ -56,8 +59,7 @@
 </div>
   </div>
 </div>
-  <?php echo $_COOKIE['user_id']; ?>
-  <?php echo $_SESSION['login']; ?>
+
 </body>
 </html>
 
