@@ -1,4 +1,5 @@
 <?php session_start();
+print_r($_SESSION);
 ?> 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="iziToast.css">
