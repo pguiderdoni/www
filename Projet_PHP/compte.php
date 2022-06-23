@@ -1,5 +1,6 @@
 <?php session_start(); 
-echo $_SESSION['login']; 
+echo $_SESSION['nom']; 
+print_r($_SESSION);
 
 ?> 
 <!DOCTYPE html>
@@ -27,8 +28,8 @@ echo $_SESSION['login'];
       <div
         class="flex bg-gray-50 px-2 py-5 grid grid-cols-3 gap-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
       >
-        <dt class="text-sm font-medium text-black pt-2 font-bold">Nom :</dt>
-        <dd class="mt-1 text-sm text-black pt-1">Bonjour !</dd>
+        <dt class="text-sm font-medium text-black pt-2 font-bold">Nom: </dt>
+        <dd class="mt-1 text-sm text-black pt-1">Bonjour <?php echo $_SESSION['nom'] ?> !</dd>
       </div>
       <hr />
       <div
@@ -50,12 +51,12 @@ echo $_SESSION['login'];
       </div>
     </dl>
     <div>
-      <button
+    <a  href="index.php?disconnect=0"> <button
     type="submit"
     class="group relative w-full bg-gradient-to-r from-slate-400 to-neutral-900 flex rounded-md justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
   >
-  <a  href="index.php?disconnect=0"> Se Déconnecter </a>
-  </button>
+  Se Déconnecter
+  </button> </a>
 </div>
   </div>
 </div>

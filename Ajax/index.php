@@ -1,3 +1,5 @@
+<?php session_start();
+?> 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="iziToast.css">
 <script src="https://cdn.tailwindcss.com"></script>
@@ -12,23 +14,23 @@
 	<div class="rounded-3xl shadow-sm -space-y-px">
 		<div>
 			<label for="nom" class="sr-only">Utilisateur (login)</label>
-				<input
-				id="login"
-				name="nom"
-				type="text"
-				required
-				class="appearance-none rounded-t-xl relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-				placeholder="nom"/>
+			<input
+			id="login"
+			name="nom"
+			type="text"
+			required
+			class="appearance-none rounded-t-xl relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+			placeholder="nom"/>
 		</div>
 		<div>
 			<label for="password" class="sr-only">Password</label>
-				<input
-				id="passwd"
-				name="password1"
-				type="password"
-				required
-				class="appearance-none rounded-b-xl relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-				placeholder="Mot de passe"/>
+			<input
+			id="passwd"
+			name="password1"
+			type="password"
+			required
+			class="appearance-none rounded-b-xl relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+			placeholder="Mot de passe"/>
 		</div>
 	<!-- <div>
 		<label for="password" class="sr-only">Password</label>
@@ -69,7 +71,6 @@
 
 
 <script>
-
 function connect(){
 	var log = $("#login").val();
 	var pass = $("#passwd").val();
@@ -84,7 +85,6 @@ function connect(){
 		},
 
 		success: function(response) {
-			console.log(response);
 			if(response["status"] == 0){
 				iziToast.show({
 				backgroundColor: 'red',
@@ -96,23 +96,14 @@ function connect(){
    				message: response["msg"],
 				});
 			}
+			
 			else if (response["status"] == 1){
-				iziToast.show({
-				backgroundColor: 'green',
-				closeOnClick: true,
-				messageColor: 'white',
-				transitionIn: 'fadeInUp',
-    			transitionOut: 'fadeInOut',
-				position: 'center',
-   				message: response["msg"],
-				});
-			}
-			      
+				window.location.assign('compte.php');
+			}	      
 		},
-
 		error: function() {	
 			console.log("Erreur");		
 		}
 	});
-    }
+}
 </script>

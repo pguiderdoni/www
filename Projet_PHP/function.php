@@ -1,5 +1,4 @@
 <?php 
-
 function is_logged(){
         if(isset($_SESSION['login']) && !empty($_SESSION['login'])){
             return true;

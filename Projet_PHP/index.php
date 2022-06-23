@@ -1,5 +1,4 @@
 <?php session_start();
-
 print_r($_SESSION);
 ?> 
 <!DOCTYPE html>
@@ -15,22 +14,18 @@ print_r($_SESSION);
     ></script>
     <link rel="stylesheet" href="style.css" />
     <title>Document</title>
-    
 </head>
 <body>
   <?php include 'C:\wamp64\www\Projet_PHP\function.php'; ?>
 
-
 <?php
-$passwordUser = "222";
+$passwordUser = "ppp";
 $loginUser = 'pierre@gmail.com';
 
 $log = 'log.txt';
 $login = '';
 $nom = '';
 $password = '';
-$isUserLogged = false;
-
 
 if (isset( $_POST['login']) && isset($_POST['password1']) && isset($_POST['password2'])) {
   if ($_POST['password1'] == $_POST['password2']){
@@ -40,12 +35,16 @@ if (isset( $_POST['login']) && isset($_POST['password1']) && isset($_POST['passw
       $nom = $_POST['nom'];
       $_SESSION['nom'] = $nom;
       $_SESSION['login'] = $login;
-      file_put_contents($log, $_SESSION['login'].date(" d-m-Y H:i:s \n"), FILE_APPEND);
+      file_put_contents($log, 'ID: '.$_POST['login'].' '.'le'.date(" d-m-Y H:i:s")." Connexion réussie \n", FILE_APPEND);
     } 
     else{
-        echo 'Informations incorrectes!';         
+        echo 'Informations incorrectes!';
+        file_put_contents($log, 'ID: '.$_POST['login'].' '.'le'.date(" d-m-Y H:i:s")." Connexion échouée: Mots de passe incorrect. \n", FILE_APPEND);         
     } 
-  } 
+  }else{
+    echo 'Les mots de passe ne correspondent pas !';
+    file_put_contents($log, 'ID: '.$_POST['login'].' '.'le'.date(" d-m-Y H:i:s")." Connexion échouée: Mots de passe différents. \n" , FILE_APPEND);
+  }
 }
 if (isset($_GET['disconnect']) && $_GET['disconnect'] == 0){
     session_destroy();
