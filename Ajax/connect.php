@@ -10,15 +10,15 @@ switch($_POST['request'])
 	$msg = "Connexion OK!";
 	$log = 'log.txt';
 
-	if($_POST['password'] !== "ppp"){
-		$status = 0;
-		$msg = "Mot de passe incorrect";
-		file_put_contents($log, 'ID: '.$_POST['login'].' '.'le'.date(" d-m-Y H:i:s")." Connexion échouée: Mots de passe incorrect. \n", FILE_APPEND);
-	}
 	if($_POST['login'] != "pierre"){
 		$status = 0;
 		$msg = "Login incorrect";
-		file_put_contents($log, 'ID: '.$_POST['login'].' '.'le'.date(" d-m-Y H:i:s")." Connexion échouée: Login incorrect. \n", FILE_APPEND);
+		file_put_contents($log, 'ID: '.$_POST['login'].' '.'le'.date(" d-m-Y H:i:s")." Connexion échouée: Utilisateur inconnu. \n", FILE_APPEND);
+	}
+	if($_POST['password'] !== "ppp"){
+		$status = 0;
+		$msg = "Mot de passe incorrect";
+		file_put_contents($log, 'ID: '.$_POST['login'].' '.'le'.date(" d-m-Y H:i:s")." Connexion échouée: Mot de passe incorrect. \n", FILE_APPEND);
 	}
 	if ($status == 1){
 		$user = $_POST['login'];
@@ -46,9 +46,8 @@ switch($_POST['request'])
   case 'logout':
 	$id = $_SESSION['loggedUser'];
 	$status = 0;
-	
 	session_destroy();
-	file_put_contents($log, 'ID: '.$id.' '.'le'.date(" d-m-Y H:i:s")." Déconnexion \n", FILE_APPEND);
+	// file_put_contents($log, 'ID: '.$id.' '.'le'.date(" d-m-Y H:i:s")." Déconnexion \n", FILE_APPEND);
 	echo json_encode($status);
   break;
 	
