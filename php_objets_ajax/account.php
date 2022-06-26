@@ -31,7 +31,16 @@ print_r($_SESSION);
         class="flex bg-gray-50 px-2 py-5 grid grid-cols-3 gap-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
       >
         <dt class="text-sm font-medium text-black pt-2 font-bold">Nom :</dt>
-        <dd class="mt-1 text-sm text-black pt-1">  </dd>
+        <dd class="mt-1 text-sm text-black pt-1"><?php echo $_SESSION['nom'] ?>  </dd>
+      </div>
+      <hr />
+      <div
+        class="flex flex-row bg-gray-50 px-2 py-5 grid grid-cols-3 gap-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
+      >
+        <div class="text-sm pt-2 font-medium text-black font-bold">
+          Prénom:
+        </div>
+        <div class="mt-1 text-sm pt-1 text-gray-900"><?php echo $_SESSION['prenom'] ?>  </div>
       </div>
       <hr />
       <div
@@ -40,17 +49,9 @@ print_r($_SESSION);
         <dt class="text-sm pt-2 font-medium text-black font-bold">
           Adresse E-mail:
         </dt>
-        <dd class="text-sm pt-2 text-gray-900">  </dd>
+        <dd class="text-sm pt-2 text-gray-900"> <?php echo $_SESSION['login'] ?> </dd>
       </div>
-      <hr />
-      <div
-        class="flex flex-row bg-gray-50 px-2 py-5 grid grid-cols-3 gap-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
-      >
-        <div class="text-sm pt-2 font-medium text-black font-bold">
-          Adresse:
-        </div>
-        <div class="mt-1 text-sm pt-1 text-gray-900">  </div>
-      </div>
+      
       
     </dl>
   </div>
