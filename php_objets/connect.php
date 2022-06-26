@@ -1,27 +1,75 @@
 <?php
 // include 'C:\wamp64\www\php_objets\function.php';  
 
+    // $db_login = '';
+    // $db_nom = '';
+    // $db_prenom = '';
+    // $db_password = '';
 
-if (isset( $_POST['login']) && isset($_POST['password1']) && isset($_POST['password2']) && isset($_POST['nom'])&& isset($_POST['prenom'])) {
-    echo '1';
-    if ($_POST['password1'] == $_POST['password2']){
-        echo '2';
-        require_once "C:\wamp64\www\php_objets\utilisateur.php";
-        echo '3';
-        $user = new User($_POST['login'], $_POST['nom'], $_POST['prenom'], $_POST['password1']);
-     
+
+
+switch($_POST['request']){
     
-        echo '4';
-        $_SESSION['login'] = $user->getLogin();
-        $_SESSION['nom'] = $user->getNom();
-        $_SESSION['prenom'] = $user->getPrenom();
+    
+    case 'signup':
 
-        print_r($_SESSION);// echo "Bienvenue '.$user->getNom().' '.$user->getPrenom().";
-        
-    }else{
-        echo 'Les mots de passe ne correspondent pas';
-    }
+        $status = 1;
+        $msg = 'Inscription validée';
 
-}else{
-    echo 'Tous les champs sont requis!';
+        if(!$POST['login']||!$POST['nom']||!$POST['prenom']){
+            $status = 0;
+            $msg = "Veuillez renseigner tous les champs";  
+        }
+        else if($_POST['password1']!=$_POST['password2']){
+            $status = 0;
+            $msg = "Les mots de passe sont différents";
+        }
+        else if($_STATUS == 1){
+            require_once "C:\wamp64\www\php_objets\utilisateur.php";
+            $user = new User($_POST['login'], $_POST['nom'], $_POST['prenom'], $_POST['password1']);
+            $_SESSION['login'] = $user->getLogin();
+            $_SESSION['nom'] = $user->getNom();
+            $_SESSION['prenom'] = $user->getPrenom();
+        }
+        echo json_encode(array("status" => $status, "msg" => $msg ));
+        break;
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

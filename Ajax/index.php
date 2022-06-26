@@ -66,8 +66,9 @@ print_r($_SESSION);
 				Se Connecter
 			</button>
 		</div>
+		</form>
 	</div>
-</form>
+
 </body>
 
 

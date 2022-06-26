@@ -43,10 +43,9 @@ switch($_POST['request'])
 
 
   case 'logout':
-	$id = $_SESSION['loggedUser'];
+	file_put_contents($log, 'ID: '.$_SESSION['loggedUser'].' '.'le'.date(" d-m-Y H:i:s")." Déconnexion \n", FILE_APPEND);
 	$status = 0;
 	session_destroy();	
-	file_put_contents($log, 'ID: '.$id.' '.'le'.date(" d-m-Y H:i:s")." Déconnexion \n", FILE_APPEND);
 	echo json_encode($status);
   break;
 	
