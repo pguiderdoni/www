@@ -37,12 +37,12 @@ function signup() {
     success: function (response) {
       if (response["status"] == 0) {
         iziToast.show({
-          backgroundColor: "red",
+          backgroundColor: 'red',
           closeOnClick: true,
-          messageColor: "white",
-          transitionIn: "fadeInUp",
-          transitionOut: "fadeInOut",
-          position: "topCenter",
+          messageColor: 'white',
+          transitionIn: 'fadeInUp',
+          transitionOut: 'fadeInOut',
+          position: 'topCenter',
           message: response["msg"],
         });
       } else if (response["status"] == 1) {

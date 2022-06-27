@@ -5,7 +5,6 @@ session_start();
 switch($_POST['request']){
     
     case 'signup':
-        $user = '';
         $status = 1;
         $msg = 'Inscription validée';
 

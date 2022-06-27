@@ -49,7 +49,7 @@ public function __construct ($login, $nom, $prenom, $password){
         } 
     }
     public function get_login(){
-        if(is_logged()){
+        if($this->is_logged()){
             return $_SESSION['login'];
         }
     }

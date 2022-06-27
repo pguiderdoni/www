@@ -13,20 +13,22 @@ print_r($_SESSION);?>
     <script
       src="https://kit.fontawesome.com/a1b11d373d.js"
       crossorigin="anonymous"></script>
+      <link rel="stylesheet" href="iziToast.css">
       <script src="iziToast.js" type="text/javascript"></script>
       <script src="script.js" type="text/javascript"></script>
 
 </head>
-<body style="bg-url('/img/blancN.jpg')">
+<body class="h-screen bg-no-repeat bg-cover" style="background-image: url(img/blancN.jpg) ;">
 <div
-  class="min-h-full flex justify-center py-12 px-4 sm:px-6 lg:px-8">
-  <div class="max-w-md w-full space-y-8">
-        <div>
-          <h2 class="mt-6 text-center text-3xl font-extrabold text-black">
+  class="flex justify-center py-12 px-4 sm:px-6 lg:px-8">
+  <div class="grid max-w-md w-full space-y-8">
+        <div class="grid">
+          <img src="img/Ishi-round.png" class="h-12 justify-self-center" alt="">
+          <h2 class="mt-2 text-center text-3xl font-extrabold text-black">
             Créez votre compte
           </h2>
         </div>
-    <form class="mt-8 space-y-6" action="javascript:signup();" method="POST">
+    <form class="justify-self-center space-y-4 w-80" action="javascript:signup();" method="POST">
       <div class="rounded-md shadow-sm -space-y-px">
           <div>
             <label for="mail" class="sr-only">Email address</label>
@@ -44,7 +46,6 @@ print_r($_SESSION);?>
               id="familyName"
               name="familyName"
               type="text"
-          
               class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
               placeholder="Nom"/>
           </div>
@@ -54,7 +55,6 @@ print_r($_SESSION);?>
               id="surname"
               name="surname"
               type="text"
-        
               class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
               placeholder="Prénom"/>
           </div>     
@@ -75,17 +75,15 @@ print_r($_SESSION);?>
               name="psswd2"
               type="password"
               required
-              class="appearance-none  rounded-b-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+              class="appearance-none rounded-b-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
               placeholder="Mot de passe - Vérification"/>
           </div>
-          <br>
         <div>
           <button
             type="submit"
             value="signup"
-            class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-3xl text-white bg-gradient-to-r from-slate-400 to-neutral-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+            class="group mt-2 relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-3xl text-white bg-gradient-to-r from-slate-400 to-neutral-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
             <span class="absolute left-0 inset-y-0 flex items-center pl-3">
-              <!-- Heroicon name: solid/lock-closed -->
               <svg
                 class="h-5 w-5 text-yellow-500 group-hover:text-indigo-400"
                 xmlns="http://www.w3.org/2000/svg"
@@ -103,8 +101,8 @@ print_r($_SESSION);?>
         </div>
     </form>
   </div>
-  <div class="container grid justify-items-center mx-auto">
-  <h2>Déjà inscrit? connectez-vous:</h2>
+  <div class="grid justify-items-center mx-auto">
+  <h3>Déjà inscrit? connectez-vous:<h3>
    <form action="javascript:login();" class="grid justify-items-center w-80 mt-2 space-y-6" method="POST">
    <div class="rounded-3xl shadow-sm -space-y-px">
      <div>
@@ -115,7 +113,7 @@ print_r($_SESSION);?>
        type="text"
        required
        class="appearance-none rounded-t-xl relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-       placeholder="Login (E-mail)"/>
+       placeholder="Identifiant (E-mail)"/>
      </div>
      <div>
        <label for="password" class="sr-only">Password</label>
@@ -124,7 +122,7 @@ print_r($_SESSION);?>
        name="password1"
        type="password"
        required
-       class="appearance-none rounded-b-xl relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+       class="appearance-none rounded-b-xl relative w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
        placeholder="Mot de passe"/>
      </div>
    </div>

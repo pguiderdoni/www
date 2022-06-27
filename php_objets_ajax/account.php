@@ -11,14 +11,13 @@ print_r($_SESSION);
     <title>Document</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script
-      src="https://kit.fontawesome.com/a1b11d373d.js"
-      crossorigin="anonymous"></script>
-      <script src="iziToast.js" type="text/javascript"></script>
-      <script src="script.js" type="text/javascript"></script>
+    <script src="https://kit.fontawesome.com/a1b11d373d.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="iziToast.css">
+    <script src="iziToast.js" type="text/javascript"></script>
+    <script src="script.js" type="text/javascript"></script>
 </head>
-<body>
-<div class=" grid opacity-80 shadow overflow-hidden sm:rounded-lg">
+<body class="h-screen">
+<div class="h-screen grid opacity-80 shadow overflow-hidden sm:rounded-lg">
   <form class="justify-self-center border-black" >
     <div class=" border border-slate-600 rounded-t-xl  px-4 py-5 sm:px-6">
       <h3 class="text-lg leading-6 font-medium font-extrabold text-gray-900">
@@ -57,10 +56,9 @@ print_r($_SESSION);
               type="submit"
               value="deconnexion"
               class="w-48 group relative justify-self-center flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-3xl text-white bg-gradient-to-r from-slate-400 to-neutral-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                <span class="absolute left-0 inset-y-0 flex items-center pl-3">
-                  <!-- Heroicon name: solid/lock-closed -->
+              <span class="absolute left-0 inset-y-0 flex items-center pl-3">
                   <svg
-                    class="h-5 w-5 justify-self-center text-yellow-500 group-hover:text-indigo-400"
+                    class="h-5 w-5 text-yellow-500 group-hover:text-indigo-400"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"
                     fill="currentColor"
