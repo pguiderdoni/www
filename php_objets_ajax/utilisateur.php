@@ -10,7 +10,7 @@ public function __construct ($login, $nom, $prenom, $password){
     $this->login = $login;
     $this->nom = $nom;
     $this->prenom = $prenom;
-    $this->password = $password;
+    $this->password = password_hash($password, PASSWORD_BCRYPT);
 }
 
 
@@ -38,5 +38,19 @@ public function __construct ($login, $nom, $prenom, $password){
     public function setPassword($password){
         $this->password = password_hash($password, PASSWORD_BCRYPT);
     }
-
+    public function getPassword(){
+        return $this->password;
+    }
+    public function is_logged(){
+        if(isset($_SESSION['login']) && !empty($_SESSION['login'])){
+            return true;
+        }else{
+            return false;
+        } 
+    }
+    public function get_login(){
+        if(is_logged()){
+            return $_SESSION['login'];
+        }
+    }
 }

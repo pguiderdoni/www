@@ -1,4 +1,6 @@
-<?php session_start();?>
+<?php session_start();
+print_r($_SESSION);?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,13 +14,10 @@
       src="https://kit.fontawesome.com/a1b11d373d.js"
       crossorigin="anonymous"></script>
       <script src="iziToast.js" type="text/javascript"></script>
+      <script src="script.js" type="text/javascript"></script>
+
 </head>
 <body>
-<?php include 'C:\wamp64\www\php_objets_ajax\function.php'; ?>
-
-
-
-  <?php if(!is_logged()){ ?>
 <div
   class="min-h-full flex justify-center py-12 px-4 sm:px-6 lg:px-8">
   <div class="max-w-md w-full space-y-8">
@@ -111,15 +110,14 @@
       </div>
     </form>
   </div>
-</div>
-<div class="container grid justify-items-center mx-auto">
+  <div class="container grid justify-items-center mx-auto">
   <h2>Déjà inscrit? connectez-vous:</h2>
    <form action="javascript:login();" class="grid justify-items-center w-80 mt-8 space-y-6" method="POST">
    <div class="rounded-3xl shadow-sm -space-y-px">
      <div>
        <label for="nom" class="sr-only">Utilisateur (login)</label>
        <input
-       id="login"
+       id="userName"
        name="nom"
        type="text"
        required
@@ -136,16 +134,6 @@
        class="appearance-none rounded-b-xl relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
        placeholder="Mot de passe"/>
      </div>
-   <!-- <div>
-     <label for="password" class="sr-only">Password</label>
-     <input
-     id="password2"
-     name="password2"
-     type="password"
-     required
-     class="appearance-none rounded-none relative block w-full px-3 py-2 rounded-b-md border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-     placeholder="Confirmer Mot de passe"/>
-   </div> -->
    </div>
      <div>
        <button
@@ -171,99 +159,6 @@
      </div>
      </form>
    </div>
-   <?php }else{
-    header('Location: /php_objets_ajax/account.php'); 
-
-} ?>
-<script>
-
-
-function signup(){
-    var log = $("#login").val();
-    var nom = $("#familyName").val();
-    var prenom = $("#surname").val();
-    var pass1 = $("#password1").val();
-    var pass2 = $("#password2").val();
-    $.ajax({
-        url: 'connect.php',
-        dataType: 'JSON',
-        type: 'POST',
-        data: {
-            'request': 'signup',
-            'login': log,
-            'nom': nom,
-            'prenom': prenom,
-            'password1': pass1,
-            'password2': pass2
-		    },
-
-        success: function(response) {
-          if(response["status"] == 0){
-            iziToast.show({
-            backgroundColor: 'red',
-            closeOnClick: true,
-            messageColor: 'white',
-            transitionIn: 'fadeInUp',
-            transitionOut: 'fadeInOut',
-            position: 'center',
-            message: response["msg"]
-            });
-          }
-			
-          else if (response["status"] == 1){
-            window.location.assign('account.php');
-			    }	   
-	    },
-		error: function() {	
-			console.log("Erreur");		
-		}
-	});
-}
-
-function login(){
-    $.ajax({
-		url: 'connect.php',
-		dataType: 'JSON',
-		type: 'POST',
-		data: {
-			'request': 'login',	
-		},
-
-		success: function(response) {
-      if(response["status"] == 1){
-        iziToast.show({
-				backgroundColor: 'green',
-				closeOnClick: true,
-				messageColor: 'white',
-				transitionIn: 'fadeInUp',
-    		transitionOut: 'fadeInOut',
-				position: 'center',
-        message: response["msg"]
-        });
-      }else{
-        // window.location.assign('index.php');
-        iziToast.show({
-				backgroundColor: 'red',
-				closeOnClick: true,
-				messageColor: 'white',
-				transitionIn: 'fadeInUp',
-    		transitionOut: 'fadeInOut',
-				position: 'center',
-        message: response["msg"]
-        
-      });
-    }
-    }
-  });
-} 
-</script>
-
-
-
-
-
-
-
-
+</div>
 </body>
 </html>
