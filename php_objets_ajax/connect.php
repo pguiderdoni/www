@@ -1,15 +1,8 @@
 <?php 
 session_start();
 
-    // $db_login = '';
-    // $db_nom = '';
-    // $db_prenom = '';
-    // $db_password = '';
-
-
 
 switch($_POST['request']){
-    
     
     case 'signup':
         $user = '';
@@ -48,20 +41,20 @@ switch($_POST['request']){
       break;
     
     
-      case 'logout':
-        $status = 0;
-        session_destroy();	
-        echo json_encode($status);
-      break;
+    case 'logout':
+    $status = 0;
+    session_destroy();	
+    echo json_encode($status);
+    break;
 
-      case 'account':
-        if ($_SESSION['login'] && !empty($_SESSION['login'])) {
-            $userLogin = $_SESSION['login'];
-            $userName = $_SESSION['nom'];
-            $userSurname = $_SESSION['prenom'];
-            echo json_encode(array("login" => $userLogin, "nom" => $userName, "prenom" => $userSurname));
-        }
-      break;
+    case 'account':
+    if ($_SESSION['login'] && !empty($_SESSION['login'])) {
+        $userLogin = $_SESSION['login'];
+        $userName = $_SESSION['nom'];
+        $userSurname = $_SESSION['prenom'];
+        echo json_encode(array("login" => $userLogin, "nom" => $userName, "prenom" => $userSurname));
+    }
+    break;
         
 
 
