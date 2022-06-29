@@ -1,20 +1,3 @@
-function disconnect() {
-  $.ajax({
-    url: "connect.php",
-    dataType: "JSON",
-    type: "POST",
-    data: {
-      request: "logout",
-    },
-
-    success: function (response) {
-      if (!response) {
-        window.location.assign("inscription.php");
-      }
-    },
-  });
-}
-
 function signup() {
   var log = $("#login").val();
   var nom = $("#familyName").val();
@@ -37,12 +20,12 @@ function signup() {
     success: function (response) {
       if (response["status"] == 0) {
         iziToast.show({
-          backgroundColor: 'red',
+          backgroundColor: "red",
           closeOnClick: true,
-          messageColor: 'white',
-          transitionIn: 'fadeInUp',
-          transitionOut: 'fadeInOut',
-          position: 'topCenter',
+          messageColor: "white",
+          transitionIn: "fadeInUp",
+          transitionOut: "fadeInOut",
+          position: "topCenter",
           message: response["msg"],
         });
       } else if (response["status"] == 1) {
@@ -90,6 +73,23 @@ function login() {
   });
 }
 
+function disconnect() {
+  $.ajax({
+    url: "connect.php",
+    dataType: "JSON",
+    type: "POST",
+    data: {
+      request: "logout",
+    },
+
+    success: function (response) {
+      if (!response) {
+        window.location.assign("inscription.php");
+      }
+    },
+  });
+}
+
 function accountLoad() {
   $.ajax({
     url: "connect.php",
@@ -107,7 +107,29 @@ function accountLoad() {
   });
 }
 
+function accountLink() {
+  console.log(1);
+  $.ajax({
+    url: "connect.php",
+    dataType: "JSON",
+    type: "POST",
+    data: {
+      request: "account_link",
+    },
+
+    success: function (response) {
+      console.log(2);
+      if (response == 1) {
+        $("#accountLink").removeClass("hidden");
+      } else if (response == 0) {
+        $("#accountLink").addClass("hidden");
+      }
+    },
+  });
+}
+
 $(document).ready(function () {
+  accountLink();
   accountLoad();
   $("#logout").on("click", disconnect);
 });

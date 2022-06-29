@@ -54,6 +54,15 @@ switch($_POST['request']){
         echo json_encode(array("login" => $userLogin, "nom" => $userName, "prenom" => $userSurname));
     }
     break;
+
+    case 'account_link':
+        $log=0;
+        if(isset($_SESSION['login']) && !empty($_SESSION['login'])){
+            $log=1;
+            
+        }
+        echo json_encode($log);
+    break;
         
 
 
