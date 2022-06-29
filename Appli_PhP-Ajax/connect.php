@@ -17,7 +17,7 @@ switch($_POST['request']){
             $msg = "Les mots de passe sont différents";
         }
         else if($status == 1){
-            require_once "C:\wamp64\www\php_objets_ajax\utilisateur.php";
+            require_once "C:\wamp64\www\Appli_PhP-Ajax\utilisateur.php";
             $user = new User($_POST['login'], $_POST['nom'], $_POST['prenom'], $_POST['password1']);
             $_SESSION['login'] = $user->getLogin();
             $_SESSION['nom'] = $user->getNom();

@@ -1,6 +1,4 @@
-<?php session_start();
-print_r($_SESSION);
-?>
+<?php session_start();?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,6 +15,31 @@ print_r($_SESSION);
     <script src="script.js" type="text/javascript"></script>
 </head>
 <body class="h-screen">
+<nav
+        class="flex grid grid-cols-3 content-center rounded-3xl h-14 bg-gradient-to-r from-slate-400 to-neutral-900">
+        <div
+          class="col-span-3 sm:col-span-2 flex justify-around sm:justify-start sm:gap-5 pt-8 sm:pt-1 sm:pl-4">
+          <a href="/inscription"
+            class="text-white text-base md:text-lg hover:text-red-600 hover:underline"
+            >Inscription</a>
+          <a href="/identification"
+            class="text-white text-base md:text-lg hover:text-red-600 hover:underline"
+            >Se connecter</a>
+        </div>
+        <div class="flex justify-end invisible sm:visible sm:pr-3 sm:gap-4">
+          <div class="text-white text-base sm:pt-1 sm:text-lg">
+            <a data-bs-toggle="tooltip"
+              data-bs-placement="left"
+              title="Vers mes notes"
+              href="/account"></a>
+          </div>
+          <img
+            class="h-10 w-auto"
+            src="img/ishi.png"
+            alt="Workflow"/>
+        </div>
+      </nav>
+      <?php print_r($_SESSION);?>
 <div class="h-screen grid opacity-80 shadow overflow-hidden sm:rounded-lg">
   <form class="justify-self-center border-black" >
     <div class=" border border-slate-600 rounded-t-xl  px-4 py-5 sm:px-6">
