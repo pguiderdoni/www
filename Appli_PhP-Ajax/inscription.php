@@ -22,20 +22,18 @@
         class="flex grid grid-cols-3 content-center rounded-3xl h-14 bg-gradient-to-r from-slate-400 to-neutral-900">
             <div
               class="col-span-3 sm:col-span-2 flex justify-around sm:justify-start sm:gap-5 pt-8 sm:pt-1 sm:pl-4">
-              <a href="inscription.php"
+              <a id="navLink" href="inscription.php"
                 class="text-white text-base md:text-lg hover:text-red-600 hover:underline"
-                >Inscription / Connexion</a>
-              <a id="accountLink" href="account.php"
-                class="hidden text-white text-base md:text-lg hover:text-red-600 hover:underline"
-                >Mon Compte</a>
+                ></a>
             </div>
             <div class="flex justify-end invisible sm:visible sm:pr-3 sm:gap-4">
               <div class="text-white text-base sm:pt-1 sm:text-lg">
                 <a
+                id="logName"
                   data-bs-toggle="tooltip"
                   data-bs-placement="left"
                   title="Vers mes notes"
-                  href="/account"></a>
+                  href="account.php"></a>
               </div>
               <img
                 class="h-10 w-auto"
@@ -43,7 +41,6 @@
                 alt="Workflow"/>
             </div>
       </nav>
-<?php print_r($_SESSION);?>
 <div
   class="flex justify-center py-12 px-4 sm:px-6 lg:px-8">
   <div class="grid max-w-md w-full space-y-8">

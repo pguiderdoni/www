@@ -19,10 +19,7 @@
         class="flex grid grid-cols-3 content-center rounded-3xl h-14 bg-gradient-to-r from-slate-400 to-neutral-900">
         <div
           class="col-span-3 sm:col-span-2 flex justify-around sm:justify-start sm:gap-5 pt-8 sm:pt-1 sm:pl-4">
-          <a href="inscription.php"
-            class="text-white text-base md:text-lg hover:text-red-600 hover:underline"
-            >Inscription / Connexion</a>
-          <a href="account.php"
+          <a id="navLink2" href="inscription.php"
             class="text-white text-base md:text-lg hover:text-red-600 hover:underline"
             >Mon Compte</a>
         </div>
@@ -33,6 +30,7 @@
               title="Vers mes notes"
               href="/account"></a>
           </div>
+          <span class="text-white self-center" id="welcomeMsg"></span>
           <img
             class="h-10 w-auto"
             src="img/ishi.png"

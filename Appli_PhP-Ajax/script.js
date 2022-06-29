@@ -16,7 +16,6 @@ function signup() {
       password1: pass1,
       password2: pass2,
     },
-
     success: function (response) {
       if (response["status"] == 0) {
         iziToast.show({
@@ -46,7 +45,6 @@ function login() {
     data: {
       request: "login",
     },
-
     success: function (response) {
       if (response["status"] == 1) {
         iziToast.show({
@@ -81,7 +79,6 @@ function disconnect() {
     data: {
       request: "logout",
     },
-
     success: function (response) {
       if (!response) {
         window.location.assign("inscription.php");
@@ -98,7 +95,6 @@ function accountLoad() {
     data: {
       request: "account",
     },
-
     success: function (response) {
       $("#accMail").html(response["login"]);
       $("#accPrenom").html(response["prenom"]);
@@ -116,13 +112,19 @@ function accountLink() {
     data: {
       request: "account_link",
     },
-
     success: function (response) {
       console.log(2);
-      if (response == 1) {
-        $("#accountLink").removeClass("hidden");
-      } else if (response == 0) {
-        $("#accountLink").addClass("hidden");
+      if (response['log'] == 1) {
+        $("#navLink").html("Mon Compte");
+        $("#navLink").attr("href", "account.php");
+        $("#navLink2").html("Mon Compte");
+        $("#navLink2").attr("href", "account.php");
+        $("#welcomeMsg").html(response["msg"]);
+      } else if (response['log'] == 0) {
+        $("#navLink").html("Inscription / Connexion");
+        $("#navLink").attr("href", "inscription.php");
+        $("#navLink2").html("Inscription / Connexion");
+        $("#navLink2").attr("href", "inscription.php");
       }
     },
   });

@@ -57,11 +57,12 @@ switch($_POST['request']){
 
     case 'account_link':
         $log=0;
+        $msg='';
         if(isset($_SESSION['login']) && !empty($_SESSION['login'])){
-            $log=1;
-            
+            $log=1; 
+            $msg= 'Bienvenue, '.$_SESSION['prenom'];   
         }
-        echo json_encode($log);
+        echo json_encode(array('log' => $log, 'msg'=> $msg));
     break;
         
 
