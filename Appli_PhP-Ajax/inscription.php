@@ -127,10 +127,10 @@
    <form action="javascript:login();" class="grid justify-items-center w-80 mt-2 space-y-6" method="POST">
    <div class="rounded-3xl shadow-sm -space-y-px">
      <div>
-       <label for="nom" class="sr-only">Utilisateur (login)</label>
+       <label for="nom" class="sr-only">Login (Email)</label>
        <input
-       id="userName"
-       name="nom"
+       id="userLogin"
+       name="login"
        type="text"
        required
        class="appearance-none rounded-t-xl relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
@@ -139,7 +139,7 @@
      <div>
        <label for="password" class="sr-only">Password</label>
        <input
-       id="passwd"
+       id="userPassword"
        name="password1"
        type="password"
        required

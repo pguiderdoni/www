@@ -4,6 +4,7 @@ function signup() {
   var prenom = $("#surname").val();
   var pass1 = $("#password1").val();
   var pass2 = $("#password2").val();
+
   $.ajax({
     url: "connect.php",
     dataType: "JSON",
@@ -38,12 +39,16 @@ function signup() {
 }
 
 function login() {
+  var userLog = $("#userLogin").val();
+  var userPassword = $("#userPassword").val();
   $.ajax({
     url: "connect.php",
     dataType: "JSON",
     type: "POST",
     data: {
       request: "login",
+      login: userLog,
+      password: userPassword,
     },
     success: function (response) {
       if (response["status"] == 1) {
@@ -56,6 +61,7 @@ function login() {
           position: "topCenter",
           message: response["msg"],
         });
+        window.location.assign("account.php");
       } else {
         iziToast.show({
           backgroundColor: "red",
@@ -114,13 +120,13 @@ function accountLink() {
     },
     success: function (response) {
       console.log(2);
-      if (response['log'] == 1) {
+      if (response["log"] == 1) {
         $("#navLink").html("Mon Compte");
         $("#navLink").attr("href", "account.php");
         $("#navLink2").html("Mon Compte");
         $("#navLink2").attr("href", "account.php");
         $("#welcomeMsg").html(response["msg"]);
-      } else if (response['log'] == 0) {
+      } else if (response["log"] == 0) {
         $("#navLink").html("Inscription / Connexion");
         $("#navLink").attr("href", "inscription.php");
         $("#navLink2").html("Inscription / Connexion");
