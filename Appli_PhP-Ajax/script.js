@@ -77,6 +77,51 @@ function login() {
   });
 }
 
+function modification() {
+  var userName = $("#accNom").val();
+  var userPname = $("#accPrenom").val();
+  var userMail = $("#accMail").val();
+  console.log(2323);
+  $.ajax({
+    url: "connect.php",
+    dataType: "JSON",
+    type: "POST",
+    data: {
+      request: "modification",
+      nom: userName,
+      prenom: userPname,
+      login: userMail,
+    },
+    success: function (response) {
+      console.log(1);
+      if (response) {
+        iziToast.show({
+          backgroundColor: "green",
+          closeOnClick: true,
+          messageColor: "white",
+          transitionIn: "fadeInUp",
+          transitionOut: "fadeInOut",
+          position: "topCenter",
+          message: response["msg"],
+        });
+        $("#accNom").val(response["nom"]);
+        $("#accPrenom").val(response["prenom"]);
+        $("#accLogin").val(response["login"]);
+      } else {
+        iziToast.show({
+          backgroundColor: "red",
+          closeOnClick: true,
+          messageColor: "white",
+          transitionIn: "fadeInUp",
+          transitionOut: "fadeInOut",
+          position: "topCenter",
+          message: response["msg"],
+        });
+      }
+    },
+  });
+}
+
 function disconnect() {
   $.ajax({
     url: "connect.php",
@@ -102,15 +147,14 @@ function accountLoad() {
       request: "account",
     },
     success: function (response) {
-      $("#accMail").html(response["login"]);
-      $("#accPrenom").html(response["prenom"]);
-      $("#accNom").html(response["nom"]);
+      $("#accMail").val(response["login"]);
+      $("#accPrenom").val(response["prenom"]);
+      $("#accNom").val(response["nom"]);
     },
   });
 }
 
 function accountLink() {
-  console.log(1);
   $.ajax({
     url: "connect.php",
     dataType: "JSON",
@@ -119,7 +163,6 @@ function accountLink() {
       request: "account_link",
     },
     success: function (response) {
-      console.log(2);
       if (response["log"] == 1) {
         $("#navLink").html("Mon Compte");
         $("#navLink").attr("href", "account.php");
@@ -139,5 +182,6 @@ function accountLink() {
 $(document).ready(function () {
   accountLink();
   accountLoad();
+  $("#upDate").on("click", modification);
   $("#logout").on("click", disconnect);
 });

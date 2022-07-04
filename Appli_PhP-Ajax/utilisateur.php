@@ -33,11 +33,20 @@ public function __construct ($id){
         $requete = "INSERT INTO `users` (`nom`, `prenom`, `login`, `password`) VALUES ('". mysqli_real_escape_string($GLOBALS['Database'],$this->nom) ."','". mysqli_real_escape_string($GLOBALS['Database'],$this->prenom)."','". mysqli_real_escape_string($GLOBALS['Database'],$this->login) ."','". mysqli_real_escape_string($GLOBALS['Database'],$this->password) ."')";
         error_log($requete);
         mysqli_query($GLOBALS['Database'], $requete) or die;
+        return mysql_insert_id();
     }
-    public static function update($nom, $prenom, $login, $password){    
-    $requete = "UPDATE `users` SET `nom`='". mysqli_real_escape_string($GLOBALS['Database'],$nom) ."', `prenom`='". mysqli_real_escape_string($GLOBALS['Database'],$prenom) ."',`login`='". mysqli_real_escape_string($GLOBALS['Database'],$login) ."',`password`='". mysqli_real_escape_string($GLOBALS['Database'],$password) ."', WHERE `id_user`='". $id ."'";
+    public function update(){    
+    $requete = "UPDATE `users` SET `nom`='". mysqli_real_escape_string($GLOBALS['Database'],$this->nom) ."', `prenom`='". mysqli_real_escape_string($GLOBALS['Database'],$this->prenom) ."',`login`='". mysqli_real_escape_string($GLOBALS['Database'],$this->login) ."' WHERE `id_user`='". $this->id ."'";
     mysqli_query($GLOBALS['Database'], $requete) or die;
     }
+
+    public static function checkLogin(){
+        $request = "SELECT * FROM `users` WHERE `login` = '".$_POST['login']."'";
+        $select = mysqli_query($GLOBALS['Database'], $request);
+        if(mysqli_num_rows($select)) { 
+            return true;    
+    }
+}
 
 
 
@@ -70,15 +79,17 @@ public function __construct ($id){
         return $this->password;
     }
     public function is_logged(){
-        if(isset($_SESSION['login']) && !empty($_SESSION['login'])){
+        if(isset($_SESSION['id'])){
             return true;
         }else{
             return false;
-        } 
+        }
     }
-    public function get_login(){
+
+
+    public function get_id(){
         if($this->is_logged()){
-            return $_SESSION['login'];
+            return $_SESSION['id'];
         }
     }
     

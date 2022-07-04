@@ -37,8 +37,7 @@
             alt="Workflow"/>
         </div>
       </nav>
-      <?php print_r($_SESSION);?>
-<div class="grid opacity-80 shadow sm:rounded-lg">
+<div class="grid opacity-80 mt-5 shadow sm:rounded-lg">
   <form class="justify-self-center border-black" >
       <div class=" border border-slate-600 rounded-t-xl px-4 py-5 sm:px-6">
         <h3 class="text-lg leading-6 font-medium font-extrabold text-gray-900">
@@ -48,27 +47,35 @@
     <div class="border border-slate-400 rounded-b-xl overflow-hidden ">
       <dl>
         <div
-          class="flex bg-gray-50 px-2 py-5 grid grid-cols-3 gap-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-          <dt class="text-sm font-medium text-black pt-2 font-bold">Nom :</dt>
-          <dd id="accNom" class="mt-1 text-sm text-black pt-1"> </dd>
+          class="flex bg-gray-50 px-2 py-5 grid grid-cols-3 gap-4 sm:grid sm:grid-cols-3 sm:gap-1 sm:px-6">
+          <dt class="text-sm font-medium text-black pt-2 font-bold">Nom:</dt>
+          <input id="accNom" class="py-2 border border-neutral-700 rounded" value="" type="text">
         </div>
-        <hr />
+        <hr/>
           <div
             class="flex flex-row px-2 py-5 grid grid-cols-3 gap-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
               <div class="text-sm pt-2 font-medium text-black font-bold">
                 Prénom:
               </div>
-          <div id="accPrenom" class="mt-1 text-sm pt-1 text-gray-900">  </div>
-        </div>
+          <input id="accPrenom" class="border border-neutral-700 rounded" value="" type="text">
+          <div class="flex justify-end"><a href="#" id="upDate" type="btn"
+            class="bg-gradient-to-r from-slate-400 to-neutral-900 hover:bg-blue-700 text-white text-sm font-bold py-2 px-4 rounded-full">Mettre a jour</a>
+            </div>
+          </div>
         <hr />
           <div
             class="bg-gray-50 flex px-2 py-5 grid grid-cols-3 gap-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
             <dt class="text-sm pt-2 font-medium text-black font-bold">
               Adresse E-mail:
             </dt>
-            <dd id="accMail" class="text-sm pt-2 text-gray-900">  </dd>
+            <input id="accMail" class="py-2 border border-neutral-700 rounded" value="" type="email">
           </div>
         </dl>
+        <div class="grid py-1 flex justify-items-end">
+          
+            <a href="#" id="deleteAccount" type="btn"
+            class="my-3 self-end bg-gradient-to-r from-red-400 to-red-700 hover:bg-blue-700 text-white text-sm font-bold py-2 px-4 rounded-full">Supprimer mon Compte</a>
+        </div>
       </div>
         <br>
           <div class="grid">
@@ -97,3 +104,4 @@
   </div>
 </body>
 </html>
+
