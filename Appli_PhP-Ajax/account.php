@@ -57,7 +57,7 @@
               <div class="text-sm pt-2 font-medium text-black font-bold">
                 Prénom:
               </div>
-          <input id="accPrenom" class="border border-neutral-700 rounded" value="" type="text">
+          <input id="accPrenom" class="py-2 border border-neutral-700 rounded" value="" type="text">
           <div class="flex justify-end"><a href="#" id="upDate" type="btn"
             class="bg-gradient-to-r from-slate-400 to-neutral-900 hover:bg-blue-700 text-white text-sm font-bold py-2 px-4 rounded-full">Mettre a jour</a>
             </div>
