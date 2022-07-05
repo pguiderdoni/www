@@ -136,6 +136,28 @@ function deleteAccount() {
         "<button><b>YES</b></button>",
         function (instance, toast) {
           instance.hide({ transitionOut: "fadeOut" }, toast, "button");
+          $.ajax({
+            url: "connect.php",
+            dataType: "JSON",
+            type: "POST",
+            data: {
+              request: "deleteAccount",
+            },
+            success: function (response) {
+              if (response["status"] == 1) {
+                window.location.assign("inscription.php");
+                iziToast.show({
+                  backgroundColor: "green",
+                  closeOnClick: true,
+                  messageColor: "white",
+                  transitionIn: "fadeInUp",
+                  transitionOut: "fadeInOut",
+                  position: "topCenter",
+                  message: response["msg"],
+                });
+              }
+            },
+          });
         },
         true,
       ],
@@ -151,19 +173,6 @@ function deleteAccount() {
     },
     onClosed: function (instance, toast, closedBy) {
       console.info("Closed | closedBy: " + closedBy);
-    },
-  });
-  $.ajax({
-    url: "connect.php",
-    dataType: "JSON",
-    type: "POST",
-    data: {
-      request: "deleteAccount",
-    },
-    success: function (response) {
-      if (!response) {
-        window.location.assign("inscription.php");
-      }
     },
   });
 }

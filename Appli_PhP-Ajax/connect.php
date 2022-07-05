@@ -23,6 +23,9 @@ switch($_POST['request']){
         else if($_POST['password1']!=$_POST['password2']){
             $status = 0;
             $msg = "Les mots de passe sont différents";
+        }else if(!strstr($_POST['login'], '@')){
+            $status = 0;
+            $msg = "Format d'adresse Mail invalide";
         }
         else if($status == 1){
             //cas 1 fonction statique
@@ -104,9 +107,14 @@ switch($_POST['request']){
     break;
 
     case 'deleteAccount':
-        "DELETE FROM `users` where `id_user` = '".$_SESSION['id']."' ";
+        error_log(1);
+        $requete= "DELETE FROM `users` where `id_user` = '".$_SESSION['id']."' ";
+        if(mysqli_query($GLOBALS['Database'], $requete)){
         $msg= 'Compte supprimé';
-        echo json_encode($msg) ;
+        $status = 1;     
+        error_log(2);
+        }
+        echo json_encode(array('msg' => $msg, 'status'=> $status));
     break;
 
     default :
