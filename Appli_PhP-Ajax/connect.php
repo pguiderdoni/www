@@ -103,6 +103,12 @@ switch($_POST['request']){
         echo json_encode(array('msg'=> $msg, 'nom'=> $user->getNom(), 'prenom'=>$user->getPrenom(), 'login'=>$user->getLogin()));
     break;
 
+    case 'deleteAccount':
+        "DELETE FROM `users` where `id_user` = '".$_SESSION['id']."' ";
+        $msg= 'Compte supprimé';
+        echo json_encode($msg) ;
+    break;
+
     default :
   echo json_encode(1) ;
   break;

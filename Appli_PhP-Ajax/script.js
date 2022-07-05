@@ -81,7 +81,6 @@ function modification() {
   var userName = $("#accNom").val();
   var userPname = $("#accPrenom").val();
   var userMail = $("#accMail").val();
-  console.log(2323);
   $.ajax({
     url: "connect.php",
     dataType: "JSON",
@@ -93,7 +92,6 @@ function modification() {
       login: userMail,
     },
     success: function (response) {
-      console.log(1);
       if (response) {
         iziToast.show({
           backgroundColor: "green",
@@ -117,6 +115,54 @@ function modification() {
           position: "topCenter",
           message: response["msg"],
         });
+      }
+    },
+  });
+}
+
+function deleteAccount() {
+  iziToast.question({
+    timeout: 20000,
+    close: false,
+    overlay: true,
+    displayMode: "once",
+    id: "question",
+    zindex: 999,
+    title: "Hey",
+    message: "Are you sure about that?",
+    position: "center",
+    buttons: [
+      [
+        "<button><b>YES</b></button>",
+        function (instance, toast) {
+          instance.hide({ transitionOut: "fadeOut" }, toast, "button");
+        },
+        true,
+      ],
+      [
+        "<button>NO</button>",
+        function (instance, toast) {
+          instance.hide({ transitionOut: "fadeOut" }, toast, "button");
+        },
+      ],
+    ],
+    onClosing: function (instance, toast, closedBy) {
+      console.info("Closing | closedBy: " + closedBy);
+    },
+    onClosed: function (instance, toast, closedBy) {
+      console.info("Closed | closedBy: " + closedBy);
+    },
+  });
+  $.ajax({
+    url: "connect.php",
+    dataType: "JSON",
+    type: "POST",
+    data: {
+      request: "deleteAccount",
+    },
+    success: function (response) {
+      if (!response) {
+        window.location.assign("inscription.php");
       }
     },
   });
@@ -182,6 +228,7 @@ function accountLink() {
 $(document).ready(function () {
   accountLink();
   accountLoad();
+  $("#deleteAccount").on("click", deleteAccount);
   $("#upDate").on("click", modification);
   $("#logout").on("click", disconnect);
 });

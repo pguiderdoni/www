@@ -29,11 +29,11 @@ public function __construct ($id){
     // mysqli_query($GLOBALS['Database'], $requete) or die;
     // }
 
-    public  function generate(){    
+    public function generate(){    
         $requete = "INSERT INTO `users` (`nom`, `prenom`, `login`, `password`) VALUES ('". mysqli_real_escape_string($GLOBALS['Database'],$this->nom) ."','". mysqli_real_escape_string($GLOBALS['Database'],$this->prenom)."','". mysqli_real_escape_string($GLOBALS['Database'],$this->login) ."','". mysqli_real_escape_string($GLOBALS['Database'],$this->password) ."')";
         error_log($requete);
         mysqli_query($GLOBALS['Database'], $requete) or die;
-        return mysql_insert_id();
+        return mysqli_insert_id($GLOBALS['Database']);
     }
     public function update(){    
     $requete = "UPDATE `users` SET `nom`='". mysqli_real_escape_string($GLOBALS['Database'],$this->nom) ."', `prenom`='". mysqli_real_escape_string($GLOBALS['Database'],$this->prenom) ."',`login`='". mysqli_real_escape_string($GLOBALS['Database'],$this->login) ."' WHERE `id_user`='". $this->id ."'";
