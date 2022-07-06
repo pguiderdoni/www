@@ -22,7 +22,7 @@
         class="flex grid grid-cols-3 content-center rounded-3xl h-14 bg-gradient-to-r from-slate-400 to-neutral-900">
             <div
               class="col-span-3 sm:col-span-2 flex justify-around sm:justify-start sm:gap-5 pt-8 sm:pt-1 sm:pl-4">
-              <a id="navLink" href="inscription.php"
+              <a id="navLink" href=""
                 class="text-white text-base md:text-lg hover:text-red-600 hover:underline"
                 ></a>
             </div>

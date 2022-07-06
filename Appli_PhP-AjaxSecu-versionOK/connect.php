@@ -17,7 +17,7 @@ function decrypt($data){
     $key = base64_decode("Ajsffoi!/;;?x-[szck@`scd!`1934Kdp64n,:§ù^=+ù%$*^2349786;s");
     $encryption_key = base64_decode($key);
     list($encrypted_data, $iv) = explode('::', base64_decode($data), 2);
-    $result = openssl_decrypt($encrypted_data,  'aes-256-cbc', $encryption_key, 0, $iv);
+    $result = openssl_decrypt($encrypted_data, 'aes-256-cbc', $encryption_key, 0, $iv);
     return $result;
 }
 
@@ -38,11 +38,9 @@ switch($_POST['request']){
             $msg = "Veuillez renseigner tous les champs";  
         }
         else if($_POST['password1']!=$_POST['password2']){
-            error_log(2);
             $status = 0;
             $msg = "Les mots de passe sont différents";
         }else if(!strstr($_POST['login'], '@')){
-            error_log(3);
             $status = 0;
             $msg = "Format d'adresse Mail invalide";
         
@@ -105,14 +103,18 @@ switch($_POST['request']){
 
     case 'account_link':
         $user = new User(decrypt($_SESSION['id']));
-        $log=0;
-        $msg='';
+        $log = 1;
+        $msg = '';
         $requete = "SELECT * FROM `users` WHERE `id_user` = '" .mysqli_real_escape_string($GLOBALS['Database'],decrypt($_SESSION['id'])) . "'";
         error_log($requete);
         $result = mysqli_query($GLOBALS['Database'], $requete)or die;
-        if($user->is_logged()){
-            $log=1; 
-            $msg= 'Bienvenue, '.$data['prenom'];   
+        if ($data = mysqli_fetch_array($result)){
+            $log = 0;
+            // error_log(json_encode($data));
+            if($user->is_logged()){
+                $log=1; 
+                $msg= 'Bienvenue, '.$data['prenom'];
+            } 
         }
         echo json_encode(array('log' => $log, 'msg'=> $msg));
     break;
@@ -122,22 +124,30 @@ switch($_POST['request']){
         $user = new User(decrypt($_SESSION['id']));
         $user->setNom($_POST['nom']);
         $user->setPrenom($_POST['prenom']);
-        $user->setLogin($_POST['login']);
-        if($user->is_logged()){
-            $user->update();
-        $msg= 'Information modifiée avec succès';
-        }else{
-            $msg= 'Une erreur est survenue';
+        if(!strstr($_POST['login'], '@')){
+            $status = 0;
         }
-        echo json_encode(array('msg'=> $msg, 'nom'=> $user->getNom(), 'prenom'=>$user->getPrenom(), 'login'=>$user->getLogin()));
+        else{
+            $user->setLogin($_POST['login']);
+            $status = 1; 
+        }
+        if($user->is_logged() && $status != 0){
+            $user->update();
+            $status = 1;
+            $msg= 'Information modifiée avec succès';    
+        }else{
+            $status = 0;
+            $msg= "Format d'E-mail invalide";
+        }
+        echo json_encode(array('status' => $status,'msg'=> $msg, 'nom'=> $user->getNom(), 'prenom'=>$user->getPrenom(), 'login'=>$user->getLogin()));
     break;
 
     case 'deleteAccount':
         $requete= "DELETE FROM `users` where `id_user` = '".decrypt($_SESSION['id'])."' ";
-        if(mysqli_query($GLOBALS['Database'], $requete)){
-        $msg= 'Compte supprimé';
+        if(mysqli_query($GLOBALS['Database'], $requete)){      
         $status = 1;
-        session_destroy();	     
+        session_destroy();
+        $msg= 'Compte supprimé';	     
         }
         echo json_encode(array('msg' => $msg, 'status'=> $status));
     break;

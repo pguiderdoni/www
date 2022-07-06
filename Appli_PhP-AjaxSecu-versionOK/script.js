@@ -96,7 +96,7 @@ function modification() {
       login: userMail,
     },
     success: function (response) {
-      if (response) {
+      if (response["status"] == 1) {
         iziToast.show({
           backgroundColor: "green",
           closeOnClick: true,
@@ -109,7 +109,7 @@ function modification() {
         $("#accNom").val(response["nom"]);
         $("#accPrenom").val(response["prenom"]);
         $("#accLogin").val(response["login"]);
-      } else {
+      } else if (response["status"] == 0) {
         iziToast.show({
           backgroundColor: "red",
           closeOnClick: true,
@@ -149,7 +149,6 @@ function deleteAccount() {
             },
             success: function (response) {
               if (response["status"] == 1) {
-                window.location.assign("inscription.php");
                 iziToast.show({
                   backgroundColor: "green",
                   closeOnClick: true,
@@ -159,6 +158,7 @@ function deleteAccount() {
                   position: "topCenter",
                   message: response["msg"],
                 });
+                window.location.assign("inscription.php");
               }
             },
           });
@@ -222,17 +222,15 @@ function accountLink() {
       request: "account_link",
     },
     success: function (response) {
-      if (response["log"] == 1) {
-        $("#navLink").html("Mon Compte");
-        $("#navLink").attr("href", "account.php");
-        $("#navLink2").html("Mon Compte");
-        $("#navLink2").attr("href", "account.php");
-        $("#welcomeMsg").html(response["msg"]);
-      } else if (response["log"] == 0) {
-        $("#navLink").html("Inscription / Connexion");
-        $("#navLink").attr("href", "inscription.php");
+      if (response["log"] == 0) {
         $("#navLink2").html("Inscription / Connexion");
         $("#navLink2").attr("href", "inscription.php");
+      } else if (response["log"] == 1) {
+        $("#navLink").html("Mon Compte");
+        $("#navLink").attr("href", "account.php");
+        $("#navLink2").html("Inscription / Connexion");
+        $("#navLink2").attr("href", "inscription.php");
+        $("#welcomeMsg").html(response["msg"]);
       }
     },
   });
