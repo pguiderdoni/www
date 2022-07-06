@@ -6,29 +6,15 @@ include 'utilisateur.php';
 $db = new Database();
 $GLOBALS['Database'] = $db->connexion();
 
-function encrypt($data){
-    $key = base64_decode("Ajsffoi!/;;?x-[szck@`scd!`1934Kdp64n,:§ù^=+ù%$*^2349786;s");
-    $encryption_key = base64_decode($key);
-    $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length('aes-256-cbc'));
-    $encrypted = openssl_encrypt($data, 'aes-256-cbc', $encryption_key, 0, $iv);
-    return base64_encode($encrypted . '::' . $iv);
-}
-function decrypt($data){
-    $key = base64_decode("Ajsffoi!/;;?x-[szck@`scd!`1934Kdp64n,:§ù^=+ù%$*^2349786;s");
-    $encryption_key = base64_decode($key);
-    list($encrypted_data, $iv) = explode('::', base64_decode($data), 2);
-    $result = openssl_decrypt($encrypted_data,  'aes-256-cbc', $encryption_key, 0, $iv);
-    return $result;
-}
-
-
-
 switch($_POST['request']){
     
     case 'signup':
         $status = 1;
         $msg = 'Inscription validée';
         $pattern = '/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{8,12}$/';
+        
+
+
         if (User::checkLogin()){
             $status=0;
             $msg = "L'utilisateur existe déjà";
@@ -45,21 +31,25 @@ switch($_POST['request']){
             error_log(3);
             $status = 0;
             $msg = "Format d'adresse Mail invalide";
-        
+        }
         // else if(!preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{8,12}$/', $_POST['password1'])){
         //     error_log(4);
         //     $status = 0;
         //     $msg = "Mot de passe: mini 8 caractères";
         // }
-        }
         else{
+            error_log(5);
+            //cas 1 fonction statique
+            //User::create($_POST['nom'],$_POST['prenom'],$_POST['login'],$_POST['password1']);
+
+            // cas 2
             $user = new User(0);
             $user->setNom($_POST['nom']);
             $user->setPrenom($_POST['prenom']);
             $user->setPassword($_POST['password1']);
             $user->setLogin($_POST['login']);
             $id = $user->generate();
-            $_SESSION['id'] = encrypt($id);
+            $_SESSION['id'] = $id;
         }
         echo json_encode(array("status" => $status, "msg" => $msg ));
     break;
@@ -67,20 +57,26 @@ switch($_POST['request']){
 
     case 'login':
         $dateJour = date("Y-m-d");
-        $requete = "SELECT * FROM `users` WHERE `login` = '".mysqli_real_escape_string($GLOBALS['Database'],$_POST['login']) . "'";
+        $requete = "SELECT * FROM `users` WHERE `login` = '" .mysqli_real_escape_string($GLOBALS['Database'],$_POST['login']) . "'";
+        error_log($requete);
         $result = mysqli_query($GLOBALS['Database'], $requete)or die;
         if ($data = mysqli_fetch_array($result)){
             $status = 0;
             $msg = 'Mauvais mot de passe'; 
+            
             if(password_verify($_POST['password'],$data['password'])){
                 if($dateJour > $data['date_password']){
                     $status = 2;
-                    $msg = encrypt($data['id_user']);
+                    $msg = 'Mot de passe expiré';
                 }else{
                     $status = 1;
                     $msg = 'Vous êtes connecté';
-                    $_SESSION['id'] = encrypt($data['id_user']);
-                } 
+                    $_SESSION['login'] = $data['login'];
+                    $_SESSION['prenom'] = $data['prenom'];
+                    $_SESSION['nom'] = $data['nom'];
+                    $_SESSION['id'] = $data['id_user'];
+                }
+                
             }
         }else{
             $status = 0;
@@ -97,29 +93,26 @@ switch($_POST['request']){
     break;
 
     case 'account':
-        $user = new User(decrypt($_SESSION['id']));
+        $user = new User($_SESSION['id']);
         if ($user->is_logged()) {
             echo json_encode(array("login" => $user->getLogin(), "nom" => $user->getNom(), "prenom" => $user->getPrenom()));
         }
     break;
 
     case 'account_link':
-        $user = new User(decrypt($_SESSION['id']));
+        $user = new User($_SESSION['id']);
         $log=0;
         $msg='';
-        $requete = "SELECT * FROM `users` WHERE `id_user` = '" .mysqli_real_escape_string($GLOBALS['Database'],decrypt($_SESSION['id'])) . "'";
-        error_log($requete);
-        $result = mysqli_query($GLOBALS['Database'], $requete)or die;
         if($user->is_logged()){
             $log=1; 
-            $msg= 'Bienvenue, '.$data['prenom'];   
+            $msg= 'Bienvenue, '.$_SESSION['prenom'];   
         }
         echo json_encode(array('log' => $log, 'msg'=> $msg));
     break;
 
         
     case 'modification':
-        $user = new User(decrypt($_SESSION['id']));
+        $user = new User($_SESSION['id']);
         $user->setNom($_POST['nom']);
         $user->setPrenom($_POST['prenom']);
         $user->setLogin($_POST['login']);
@@ -133,34 +126,20 @@ switch($_POST['request']){
     break;
 
     case 'deleteAccount':
-        $requete= "DELETE FROM `users` where `id_user` = '".decrypt($_SESSION['id'])."' ";
+        error_log(1);
+        $requete= "DELETE FROM `users` where `id_user` = '".$_SESSION['id']."' ";
         if(mysqli_query($GLOBALS['Database'], $requete)){
         $msg= 'Compte supprimé';
-        $status = 1;
-        session_destroy();	     
+        $status = 1;     
+        error_log(2);
         }
         echo json_encode(array('msg' => $msg, 'status'=> $status));
-    break;
-
-    case 'reset_password': 
-        if($_POST['newPassword'] != $_POST['newPassword2']){
-            $status = 0;
-            $msg = "Les mots de passe sont différents";
-        }else{
-            $status = 1;
-            $user = new User (decrypt($_POST['user_id']));
-            $user->setPassword($_POST['newPassword']);
-            $user->update();
-            $_SESSION['id'] = $_POST['user_id'];
-            $msg = "Mot de passe mis à jour";
-        } 
-        echo json_encode(array('status' => $status, 'msg'=> $msg));
     break;
 
     default :
   echo json_encode(1) ;
   break;
-    
+
 }
 
 

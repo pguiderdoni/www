@@ -37,7 +37,6 @@
             alt="Workflow"/>
         </div>
       </nav>
-      <?php print_r($_SESSION) ?>
 <div class="grid opacity-80 mt-5 shadow sm:rounded-lg">
   <form class="justify-self-center border-black" >
       <div class=" border border-slate-600 rounded-t-xl px-4 py-5 sm:px-6">

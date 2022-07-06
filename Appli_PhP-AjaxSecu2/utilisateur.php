@@ -39,10 +39,8 @@ public function __construct ($id){
         mysqli_query($GLOBALS['Database'], $requete) or die;
         return mysqli_insert_id($GLOBALS['Database']);
     }
-    public function update(){ 
-    $datePassword = date("Y-m-d", strtotime("+1 month"));   
-    $requete = "UPDATE `users` SET `nom`='". mysqli_real_escape_string($GLOBALS['Database'],$this->nom) ."', `prenom`='". mysqli_real_escape_string($GLOBALS['Database'],$this->prenom) ."',`login`='". mysqli_real_escape_string($GLOBALS['Database'],$this->login) ."',`password`='". mysqli_real_escape_string($GLOBALS['Database'],$this->password) ."',`date_password`='". mysqli_real_escape_string($GLOBALS['Database'],$datePassword) ."' WHERE `id_user`='". $this->id ."'";
-    error_log($requete);
+    public function update(){    
+    $requete = "UPDATE `users` SET `nom`='". mysqli_real_escape_string($GLOBALS['Database'],$this->nom) ."', `prenom`='". mysqli_real_escape_string($GLOBALS['Database'],$this->prenom) ."',`login`='". mysqli_real_escape_string($GLOBALS['Database'],$this->login) ."' WHERE `id_user`='". $this->id ."'";
     mysqli_query($GLOBALS['Database'], $requete) or die;
     }
 

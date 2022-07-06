@@ -73,7 +73,6 @@ function login() {
           message: response["msg"],
         });
       } else if (response["status"] == 2) {
-        $("#id_user").val(response["msg"]);
         $("#loginForm").addClass("hidden");
         $("#resetForm").removeClass("hidden");
       }
@@ -233,41 +232,6 @@ function accountLink() {
         $("#navLink").attr("href", "inscription.php");
         $("#navLink2").html("Inscription / Connexion");
         $("#navLink2").attr("href", "inscription.php");
-      }
-    },
-  });
-}
-
-function reset_Password() {
-  var passwd1 = $("#resetPassword").val();
-  var passwd2 = $("#resetPassword2").val();
-  var idUser = $("#id_user").val();
-  console.log(passwd1);
-  console.log(passwd2);
-  $.ajax({
-    url: "connect.php",
-    dataType: "JSON",
-    type: "POST",
-    data: {
-      request: "reset_password",
-      newPassword: passwd1,
-      newPassword2: passwd2,
-      user_id: idUser,
-    },
-    success: function (response) {
-      console.log("bbb");
-      if (response["status"] == 1) {
-        window.location.assign("account.php");
-      } else if (response["status"] == 0) {
-        iziToast.show({
-          backgroundColor: "red",
-          closeOnClick: true,
-          messageColor: "white",
-          transitionIn: "fadeInUp",
-          transitionOut: "fadeInOut",
-          position: "topCenter",
-          message: response["msg"],
-        });
       }
     },
   });
