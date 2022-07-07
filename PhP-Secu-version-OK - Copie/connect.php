@@ -101,23 +101,23 @@ switch($_POST['request']){
         }
     break;
 
-    case 'account_link':
-        $user = new User(decrypt($_SESSION['id']));
-        $log = 1;
-        $msg = '';
-        $requete = "SELECT * FROM `users` WHERE `id_user` = '" .mysqli_real_escape_string($GLOBALS['Database'],decrypt($_SESSION['id'])) . "'";
-        error_log($requete);
-        $result = mysqli_query($GLOBALS['Database'], $requete)or die;
-        if ($data = mysqli_fetch_array($result)){
-            $log = 0;
-            // error_log(json_encode($data));
-            if($user->is_logged()){
-                $log=1; 
-                $msg= 'Bienvenue, '.$data['prenom'];
-            } 
-        }
-        echo json_encode(array('log' => $log, 'msg'=> $msg));
-    break;
+    // case 'account_link':
+    //     $user = new User(decrypt($_SESSION['id']));
+    //     $log = 1;
+    //     $msg = '';
+    //     $requete = "SELECT * FROM `users` WHERE `id_user` = '" .mysqli_real_escape_string($GLOBALS['Database'],decrypt($_SESSION['id'])) . "'";
+    //     error_log($requete);
+    //     $result = mysqli_query($GLOBALS['Database'], $requete)or die;
+    //     if ($data = mysqli_fetch_array($result)){
+    //         $log = 0;
+    //         // error_log(json_encode($data));
+    //         if($user->is_logged()){
+    //             $log=1; 
+    //             $msg= 'Bienvenue, '.$data['prenom'];
+    //         } 
+    //     }
+    //     echo json_encode(array('log' => $log, 'msg'=> $msg));
+    // break;
 
         
     case 'modification':
@@ -167,6 +167,44 @@ switch($_POST['request']){
         echo json_encode(array('status' => $status, 'msg'=> $msg));
     break;
 
+    case 'forgetPassword':
+        $demandeLogin = '<form class="grid grid justify-items-center mx-auto" action="javascript:password_recovery();">
+                        <h1>Renseignez votre login: </h1>
+                        <label for="mail" class="sr-only">Email address</label>
+                        <input
+                        id="recoveryLogin"
+                        name="mail"
+                        type="text"
+                        class="appearance-none  rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                        placeholder= "Entrez l\'adresse mail"/>
+                        <div><button
+                        type="submit"
+                        value="passRecov"
+                        class="group mt-2 relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-3xl text-white bg-gradient-to-r from-slate-400 to-neutral-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+                        </span> Demander un nouveau mot de passe</button></div>
+                        </form>';               
+        echo json_encode($demandeLogin);
+    break;
+
+    case 'passwordRecovery':
+        $login = $_POST['login'];
+        $requete = "SELECT * FROM `users` WHERE `login` = '".mysqli_real_escape_string($GLOBALS['Database'],$login) . "'";
+        $result = mysqli_query($GLOBALS['Database'], $requete)or die;
+        $crypt = random_bytes(32);
+        if ($data = mysqli_fetch_array($result)){
+            $idUser = $data['id_user'];
+            $requete = "INSERT INTO `requetes` (`id_user`, `hash_user`) VALUES ('". mysqli_real_escape_string($GLOBALS['Database'],$idUser) ."','". mysqli_real_escape_string($GLOBALS['Database'],$crypt)."')";
+            error_log($requete);
+            mysqli_query($GLOBALS['Database'], $requete) or die;
+            
+    
+        }
+        echo json_encode('over');
+    break;
+
+
+    
     default :
   echo json_encode(1) ;
   break;

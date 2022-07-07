@@ -94,6 +94,10 @@ public function __construct ($id){
         }
     }
 
+    // public static function isExist(){
+        
+    // }
+
 
     public function get_id(){
         if($this->is_logged()){

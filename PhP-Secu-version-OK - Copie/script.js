@@ -253,7 +253,6 @@ function reset_Password() {
       user_id: idUser,
     },
     success: function (response) {
-      console.log("bbb");
       if (response["status"] == 1) {
         window.location.assign("account.php");
       } else if (response["status"] == 0) {
@@ -270,10 +269,39 @@ function reset_Password() {
     },
   });
 }
+function forget_password() {
+  $.ajax({
+    url: "connect.php",
+    dataType: "JSON",
+    type: "POST",
+    data: {
+      request: "forgetPassword",
+    },
+    success: function (response) {
+      $("#loginForm").html(response);
+    },
+  });
+}
+function password_recovery() {
+  var recovery_login = $("#recoveryLogin").val();
+  $.ajax({
+    url: "connect.php",
+    dataType: "JSON",
+    type: "POST",
+    data: {
+      request: "passwordRecovery",
+      login: recovery_login,
+    },
+    success: function (response) {
+      console.log(response);
+    },
+  });
+}
 
 $(document).ready(function () {
-  accountLink();
-  accountLoad();
+  // accountLink();
+  // accountLoad();
+  $("#forgetPassword").on("click", forget_password);
   $("#deleteAccount").on("click", deleteAccount);
   $("#upDate").on("click", modification);
   $("#logout").on("click", disconnect);
