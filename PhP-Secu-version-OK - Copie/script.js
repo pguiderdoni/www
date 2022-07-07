@@ -223,13 +223,8 @@ function accountLink() {
     },
     success: function (response) {
       if (response["log"] == 0) {
-        $("#navLink2").html("Inscription / Connexion");
-        $("#navLink2").attr("href", "inscription.php");
+        return 1;
       } else if (response["log"] == 1) {
-        $("#navLink").html("Mon Compte");
-        $("#navLink").attr("href", "account.php");
-        $("#navLink2").html("Inscription / Connexion");
-        $("#navLink2").attr("href", "inscription.php");
         $("#welcomeMsg").html(response["msg"]);
       }
     },
@@ -299,8 +294,8 @@ function password_recovery() {
 }
 
 $(document).ready(function () {
-  // accountLink();
-  // accountLoad();
+  accountLink();
+  accountLoad();
   $("#forgetPassword").on("click", forget_password);
   $("#deleteAccount").on("click", deleteAccount);
   $("#upDate").on("click", modification);

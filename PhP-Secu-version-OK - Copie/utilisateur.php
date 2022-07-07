@@ -81,7 +81,7 @@ public function __construct ($id){
         return $this->password;
     }
     public function setDatePassword($datePassword){
-        $this->login = $login;
+        $this->datePassword = $datePassword;
     }
     public function getDatePassword(){
         return $this->datePassword;
