@@ -44,15 +44,15 @@
             </div>
       </nav>
       <?php print_r($_SESSION) ?>
-<span id="champLogin" class="flex items-center ml-5">
-      <div id="loginForm" class="grid justify-items-center mx-auto">
+<span id="newChampLogin" class="flex items-center ml-5">
+      <div id="changeLoginForm" class="grid justify-items-center mx-auto">
           <h2 class="self-end mb-2 font-bold">Modifiez votre mot de passe<h2>
-          <form action="javascript:login();" class="grid justify-items-center w-80 space-y-6" method="POST">
+          <form action="javascript:new_password_recovery();" class="grid justify-items-center w-80 space-y-6" method="POST">
             <div class="rounded-3xl shadow-sm -space-y-px">
                 <div>
                   <label for="nom" class="sr-only">Login (Email)</label>
                   <input
-                  id="userLogin"
+                  id="changeUserLogin"
                   name="login"
                   type="text"
                   required
@@ -62,7 +62,7 @@
               <div>
               <label for="password" class="sr-only">Password</label>
               <input
-              id="userPassword"
+              id="newPassword1"
               name="password1"
               type="password"
               required
@@ -72,7 +72,7 @@
               <div>
               <label for="password" class="sr-only">Password</label>
               <input
-              id="userPassword"
+              id="newPassword2"
               name="password1"
               type="password"
               required

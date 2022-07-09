@@ -188,22 +188,69 @@ switch($_POST['request']){
     break;
 
     case 'passwordRecovery':
+        $msg = '';
         $login = $_POST['login'];
         $requete = "SELECT * FROM `users` WHERE `login` = '".mysqli_real_escape_string($GLOBALS['Database'],$login) . "'";
-        $result = mysqli_query($GLOBALS['Database'], $requete)or die;
-        $crypt = random_bytes(32);
+        $result = mysqli_query($GLOBALS['Database'], $requete)or die;        
         if ($data = mysqli_fetch_array($result)){
+            $crypt = bin2hex(random_bytes(18));;
             $idUser = $data['id_user'];
             $requete = "INSERT INTO `requetes` (`id_user`, `hash_user`) VALUES ('". mysqli_real_escape_string($GLOBALS['Database'],$idUser) ."','". mysqli_real_escape_string($GLOBALS['Database'],$crypt)."')";
-            error_log($requete);
             mysqli_query($GLOBALS['Database'], $requete) or die;
-            
-    
+            $msg = "<a class='underline text-blue-600' href='change_password.php?token=".$crypt."'>Voici votre lien de réinitialisation</a>";
+        }else{
+           $msg = "utilisateur inconnu";
         }
-        echo json_encode('over');
+        echo json_encode($msg);
     break;
 
+    case 'modifyPassword':
+        $msg ='';
+        $requete = "SELECT * FROM `users` WHERE `login` = '".mysqli_real_escape_string($GLOBALS['Database'],$_POST['login']) . "'";
+        $result = mysqli_query($GLOBALS['Database'], $requete)or die;
+        if ($data = mysqli_fetch_array($result)){
+            // utilisateur connu
+            error_log(100);
+            $idUser = $data['id_user'];
+            $nomUser = $data['nom'];
+            $prenomUser = $data['prenom'];
+            $loginUser = $_POST['login'];
+            $requete = "SELECT * FROM `requetes` WHERE `id_user` = '".mysqli_real_escape_string($GLOBALS['Database'],$idUser) . "'";
+            $result = mysqli_query($GLOBALS['Database'], $requete)or die;
+            error_log($requete);
+            error_log(101);
+            if ($data = mysqli_fetch_array($result)){
+                error_log(102);
+                $crypt = $data['hash_user'];
+                $validiteHash = $data['validite'];
+                if ($validiteHash == 1){
+                    error_log(22);
+                    $msg = 'Lien expiré, veuillez refaire une demande';
+                }else if ($validiteHash == 0 && $crypt === $_POST['token']){
+                    error_log(33);
+                    if($_POST['passwd1'] != $_POST['passwd2']){
+                        error_log(44);
+                        $msg = 'Les mots de passe ne correspondent pas';
+                    }else{
+                        error_log(55);
+                        $user = new User($idUser);
+                        $user->setNom($nomUser);
+                        $user->setPrenom($prenomUser);
+                        $user->setPassword($_POST['passwd1']);
+                        $user->setLogin($loginUser);
+                        $user->update();
+                        $msg = 'password changé';
+                    }
+                }
+            }
+        }else{
+           $msg = 'utilisateur inconnu';
+        }
 
+        echo json_encode($msg);
+    break;
+
+    
     
     default :
   echo json_encode(1) ;
