@@ -193,24 +193,26 @@ switch($_POST['request']){
         $requete = "SELECT * FROM `users` WHERE `login` = '".mysqli_real_escape_string($GLOBALS['Database'],$login) . "'";
         $result = mysqli_query($GLOBALS['Database'], $requete)or die;        
         if ($data = mysqli_fetch_array($result)){
+            $status = 1;
             $crypt = bin2hex(random_bytes(18));;
             $idUser = $data['id_user'];
             $requete = "INSERT INTO `requetes` (`id_user`, `hash_user`) VALUES ('". mysqli_real_escape_string($GLOBALS['Database'],$idUser) ."','". mysqli_real_escape_string($GLOBALS['Database'],$crypt)."')";
             mysqli_query($GLOBALS['Database'], $requete) or die;
             $msg = "<a class='underline text-blue-600' href='change_password.php?token=".$crypt."'>Voici votre lien de réinitialisation</a>";
         }else{
-           $msg = "utilisateur inconnu";
+            $status = 0;
+            $msg = "Utilisateur inconnu";
         }
-        echo json_encode($msg);
+        echo json_encode(array('status' => $status, 'msg'=> $msg));
     break;
 
     case 'modifyPassword':
-        $msg ='';
+        $msg = '';
+        $status = '';
         $requete = "SELECT * FROM `users` WHERE `login` = '".mysqli_real_escape_string($GLOBALS['Database'],$_POST['login']) . "'";
         $result = mysqli_query($GLOBALS['Database'], $requete)or die;
         if ($data = mysqli_fetch_array($result)){
             // utilisateur connu
-            error_log(100);
             $idUser = $data['id_user'];
             $nomUser = $data['nom'];
             $prenomUser = $data['prenom'];
@@ -218,36 +220,32 @@ switch($_POST['request']){
             $requete = "SELECT * FROM `requetes` WHERE `id_user` = '".mysqli_real_escape_string($GLOBALS['Database'],$idUser) . "'";
             $result = mysqli_query($GLOBALS['Database'], $requete)or die;
             error_log($requete);
-            error_log(101);
             if ($data = mysqli_fetch_array($result)){
-                error_log(102);
                 $crypt = $data['hash_user'];
                 $validiteHash = $data['validite'];
                 if ($validiteHash == 1){
-                    error_log(22);
+                    $status = 0;
                     $msg = 'Lien expiré, veuillez refaire une demande';
                 }else if ($validiteHash == 0 && $crypt === $_POST['token']){
-                    error_log(33);
                     if($_POST['passwd1'] != $_POST['passwd2']){
-                        error_log(44);
+                        $status = 1;
                         $msg = 'Les mots de passe ne correspondent pas';
                     }else{
-                        error_log(55);
                         $user = new User($idUser);
                         $user->setNom($nomUser);
                         $user->setPrenom($prenomUser);
                         $user->setPassword($_POST['passwd1']);
                         $user->setLogin($loginUser);
                         $user->update();
-                        $msg = 'password changé';
+                        $status = 3;
                     }
                 }
             }
         }else{
-           $msg = 'utilisateur inconnu';
+            $status = 4;
+            $msg = 'utilisateur inconnu';
         }
-
-        echo json_encode($msg);
+        echo json_encode(array('status' => $status, 'msg'=> $msg));
     break;
 
     

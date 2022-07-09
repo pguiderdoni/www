@@ -288,10 +288,97 @@ function password_recovery() {
       login: recovery_login,
     },
     success: function (response) {
-      console.log(response);
+      if(response["status"] == 1){
+        $("#loginForm").html(response["msg"]);
+      }else{
+        iziToast.show({
+          backgroundColor: "red",
+          closeOnClick: true,
+          messageColor: "white",
+          transitionIn: "fadeInUp",
+          transitionOut: "fadeInOut",
+          position: "topCenter",
+          message: response["msg"],
+        });
+      }
+      
+    }
+  });
+}
+
+function new_password_recovery(){
+  var token = "";
+	if ($_GET('token') != null) {
+		var token = $_GET('token');
+  }
+  var userLogin = $("#changeUserLogin").val();
+  var passwordChange1 = $("#newPassword1").val();
+  var passwordChange2 = $("#newPassword2").val();
+   $.ajax({
+    url: "connect.php",
+    dataType: "JSON",
+    type: "POST",
+    data: {
+      request: "modifyPassword",
+      login: userLogin,
+      passwd1: passwordChange1,
+      passwd2: passwordChange2,
+      token: token
+    },
+    success: function (response) {
+      if(response["status"] == 3){
+        iziToast.show({
+          theme: 'dark',
+          icon: 'icon-person',
+          title: 'Votre mot de passe à été modifié, retour à la page de connexion! ',
+          message: '',
+          position: 'center', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter
+          buttons: [
+              ['<button>Ok</button>', function (instance, toast) {
+                window.location.assign("login.php");
+              }, true], // true to focus
+          ],
+          onOpening: function(instance, toast){
+              console.info('callback abriu!');
+          },
+          onClosing: function(instance, toast, closedBy){
+              console.info('closedBy: ' + closedBy); // tells if it was closed by 'drag' or 'button'
+          }
+      });    
+      }else if (response["status"] != 3){
+        iziToast.show({
+          backgroundColor: "red",
+          closeOnClick: true,
+          messageColor: "white",
+          transitionIn: "fadeInUp",
+          transitionOut: "fadeInOut",
+          position: "topCenter",
+          message: response["msg"],
+        });
+      }
+     
     },
   });
 }
+
+function $_GET(param) {
+	var vars = {};
+	window.location.href.replace( location.hash, '' ).replace( 
+		/[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
+		function( m, key, value ) { // callback
+			vars[key] = value !== undefined ? value : '';
+		}
+	);
+
+	if ( param ) {
+		return vars[param] ? vars[param] : null;	
+	}
+	return vars;
+}
+
+
+
+
 
 $(document).ready(function () {
   accountLink();
