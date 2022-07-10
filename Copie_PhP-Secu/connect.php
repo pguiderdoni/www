@@ -209,6 +209,7 @@ switch($_POST['request']){
     case 'modifyPassword':
         $msg = '';
         $status = '';
+        $token = $_POST['token'];
         $requete = "SELECT * FROM `users` WHERE `login` = '".mysqli_real_escape_string($GLOBALS['Database'],$_POST['login']) . "'";
         $result = mysqli_query($GLOBALS['Database'], $requete)or die;
         if ($data = mysqli_fetch_array($result)){
@@ -217,9 +218,8 @@ switch($_POST['request']){
             $nomUser = $data['nom'];
             $prenomUser = $data['prenom'];
             $loginUser = $_POST['login'];
-            $requete = "SELECT * FROM `requetes` WHERE `id_user` = '".mysqli_real_escape_string($GLOBALS['Database'],$idUser) . "'";
-            $result = mysqli_query($GLOBALS['Database'], $requete)or die;
-            error_log($requete);
+            $requete1 = "SELECT * FROM `requetes` WHERE `id_user` = '".mysqli_real_escape_string($GLOBALS['Database'],$idUser) . "'";
+            $result = mysqli_query($GLOBALS['Database'], $requete1)or die;
             if ($data = mysqli_fetch_array($result)){
                 $crypt = $data['hash_user'];
                 $validiteHash = $data['validite'];
@@ -232,11 +232,11 @@ switch($_POST['request']){
                         $msg = 'Les mots de passe ne correspondent pas';
                     }else{
                         $user = new User($idUser);
-                        $user->setNom($nomUser);
-                        $user->setPrenom($prenomUser);
-                        $user->setPassword($_POST['passwd1']);
-                        $user->setLogin($loginUser);
+                        $user->setPassword($_POST['passwd1']);     
                         $user->update();
+                        $requete2 = "UPDATE `requetes` SET `validite`='". mysqli_real_escape_string($GLOBALS['Database'],'1') ."' WHERE `hash_user`='".mysqli_real_escape_string($GLOBALS['Database'],$token)."'";
+                        $result2 = mysqli_query($GLOBALS['Database'], $requete2)or die;
+                        error_log($requete2);
                         $status = 3;
                     }
                 }
