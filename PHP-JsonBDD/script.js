@@ -38,7 +38,7 @@ function interventionLoad() {
     },
     success: function (response) {
       if (response["status"] == 1) {
-        $("#listeInterv").html(response["msg"]);
+        $("#interventionTab").html(response["msg"]);
       } else if (response["status"] == 2) {
         alert(response["msg"]);
       }

@@ -32,7 +32,11 @@ switch($_POST['request']){
             }
             $html = '';
             foreach($JsonDecode as $interventions){
-                $html .= '<p>'.$interventions['immat'].'<p>'.'<p>'.$interventions['marque'].'<p>'.'<p>'.$interventions['modele'].'<p>';
+                $html .= '<tr>
+                            <td class="border border-slate-700">'.$interventions['marque'].'</td>
+                            <td class="border border-slate-700">'.$interventions['modele'].'</td>
+                            <td class="border border-slate-700">'.$interventions['immat'].'</td>
+                        </tr>';
                 $status = 1;
             }
             echo json_encode(array("status" => $status, "msg" => $html ));

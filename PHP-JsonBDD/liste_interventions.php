@@ -10,7 +10,7 @@
     <script src="script.js" type="text/javascript"></script>
 
 </head>
-<body class="h-screen bg-no-repeat bg-cover" style="">
+<body class="h-screen bg-no-repeat bg-cover">
 <nav
         class="flex grid grid-cols-3 content-center rounded-3xl h-14 bg-gradient-to-r from-slate-400 to-neutral-900">
         <div
@@ -28,6 +28,8 @@
           </div>
         </div>
       </nav>
+     
+      </table>
       <div class="flex justify-center mr-5 py-12 px-4 sm:px-6 lg:px-8">
     <div class="grid align max-w-md w-full space-y-8">
         <div class="grid">
@@ -35,9 +37,18 @@
             Véhicules en attente
           </h2>
         </div>
-        <div id="listeInterv" class="grid">
-
-        </div>
+        <table class="border-separate border border-slate-500 rounded">
+        <thead>
+          <tr>
+            <th class="border border-slate-600">Marque</th>
+            <th class="border border-slate-600">Modele</th>
+            <th class="border border-slate-600">Immatriculation</th>
+          </tr>
+        </thead>
+        <tbody id="interventionTab">
+          
+         
+        </tbody>
         
     </div>
   </div>
