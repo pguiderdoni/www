@@ -33,9 +33,9 @@ switch($_POST['request']){
             $html = '';
             foreach($JsonDecode as $interventions){
                 $html .= '<tr>
-                            <th class="border border-slate-700">'.$interventions['marque'].'</th>
-                            <th class="border border-slate-700">'.$interventions['modele'].'</th>
-                            <th class="border border-slate-700">'.$interventions['immat'].'</th>
+                            <th class="border border-y-slate-700">'.$interventions['marque'].'</th>
+                            <th class="border border-y-slate-700">'.$interventions['modele'].'</th>
+                            <th class="border border-y-slate-700">'.$interventions['immat'].'</th>
                         </tr>';
                 $status = 1;
             }
