@@ -197,39 +197,39 @@ function disconnect() {
   });
 }
 
-// function accountLoad() {
-//   $.ajax({
-//     url: "connect.php",
-//     dataType: "JSON",
-//     type: "POST",
-//     data: {
-//       request: "account",
-//     },
-//     success: function (response) {
-//       $("#accMail").val(response["login"]);
-//       $("#accPrenom").val(response["prenom"]);
-//       $("#accNom").val(response["nom"]);
-//     },
-//   });
-// }
+function accountLoad() {
+  $.ajax({
+    url: "connect.php",
+    dataType: "JSON",
+    type: "POST",
+    data: {
+      request: "account",
+    },
+    success: function (response) {
+      $("#accMail").val(response["login"]);
+      $("#accPrenom").val(response["prenom"]);
+      $("#accNom").val(response["nom"]);
+    },
+  });
+}
 
-// function accountLink() {
-//   $.ajax({
-//     url: "connect.php",
-//     dataType: "JSON",
-//     type: "POST",
-//     data: {
-//       request: "account_link",
-//     },
-//     success: function (response) {
-//       if (response["log"] == 0) {
-//         return 1;
-//       } else if (response["log"] == 1) {
-//         $("#welcomeMsg").html(response["msg"]);
-//       }
-//     },
-//   });
-// }
+function accountLink() {
+  $.ajax({
+    url: "connect.php",
+    dataType: "JSON",
+    type: "POST",
+    data: {
+      request: "account_link",
+    },
+    success: function (response) {
+      if (response["log"] == 0) {
+        return 1;
+      } else if (response["log"] == 1) {
+        $("#welcomeMsg").html(response["msg"]);
+      }
+    },
+  });
+}
 
 function reset_Password() {
   var passwd1 = $("#resetPassword").val();
@@ -381,8 +381,8 @@ function $_GET(param) {
 }
 
 $(document).ready(function () {
-  // accountLink();
-  // accountLoad();
+  accountLink();
+  accountLoad();
   $("#forgetPassword").on("click", forget_password);
   $("#deleteAccount").on("click", deleteAccount);
   $("#upDate").on("click", modification);

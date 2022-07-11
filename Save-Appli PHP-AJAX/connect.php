@@ -108,30 +108,30 @@ switch($_POST['request']){
     echo json_encode($status);
     break;
 
-    // case 'account':
-    //     $user = new User(decrypt($_SESSION['id']));
-    //     if ($user->is_logged()) {
-    //         echo json_encode(array("login" => $user->getLogin(), "nom" => $user->getNom(), "prenom" => $user->getPrenom()));
-    //     }
-    // break;
+    case 'account':
+        $user = new User(decrypt($_SESSION['id']));
+        if ($user->is_logged()) {
+            echo json_encode(array("login" => $user->getLogin(), "nom" => $user->getNom(), "prenom" => $user->getPrenom()));
+        }
+    break;
 
-    // case 'account_link':
-    //     $user = new User(decrypt($_SESSION['id']));
-    //     $log = 1;
-    //     $msg = '';
-    //     $requete = "SELECT * FROM `users` WHERE `id_user` = '" .mysqli_real_escape_string($GLOBALS['Database'],decrypt($_SESSION['id'])) . "'";
-    //     error_log($requete);
-    //     $result = mysqli_query($GLOBALS['Database'], $requete)or die;
-    //     if ($data = mysqli_fetch_array($result)){
-    //         $log = 0;
-    //         // error_log(json_encode($data));
-    //         if($user->is_logged()){
-    //             $log=1; 
-    //             $msg= 'Bienvenue, '.$data['prenom'];
-    //         } 
-    //     }
-    //     echo json_encode(array('log' => $log, 'msg'=> $msg));
-    // break;
+    case 'account_link':
+        $user = new User(decrypt($_SESSION['id']));
+        $log = 1;
+        $msg = '';
+        $requete = "SELECT * FROM `users` WHERE `id_user` = '" .mysqli_real_escape_string($GLOBALS['Database'],decrypt($_SESSION['id'])) . "'";
+        error_log($requete);
+        $result = mysqli_query($GLOBALS['Database'], $requete)or die;
+        if ($data = mysqli_fetch_array($result)){
+            $log = 0;
+            // error_log(json_encode($data));
+            if($user->is_logged()){
+                $log=1; 
+                $msg= 'Bienvenue, '.$data['prenom'];
+            } 
+        }
+        echo json_encode(array('log' => $log, 'msg'=> $msg));
+    break;
 
         
     case 'modification':

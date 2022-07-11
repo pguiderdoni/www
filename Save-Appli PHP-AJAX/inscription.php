@@ -41,7 +41,6 @@
                 alt="Workflow"/>
             </div>
       </nav>
-      <?php print_r($_SESSION) ?>
 <div class="flex justify-center mr-5 py-12 px-4 sm:px-6 lg:px-8">
     <div class="grid align max-w-md w-full space-y-8">
         <div class="grid">

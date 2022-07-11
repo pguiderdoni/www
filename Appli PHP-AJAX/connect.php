@@ -64,22 +64,36 @@ switch($_POST['request']){
 
 
     case 'login':
-        $dateJour = date("Y-m-d");
+        $dateJour = date("Y-m-d H:i:s");
         $requete = "SELECT * FROM `users` WHERE `login` = '".mysqli_real_escape_string($GLOBALS['Database'],$_POST['login']) . "'";
-        $result = mysqli_query($GLOBALS['Database'], $requete)or die;
+        $result = mysqli_query($GLOBALS['Database'], $requete) or die;
         if ($data = mysqli_fetch_array($result)){
-            $status = 0;
-            $msg = 'Mauvais mot de passe'; 
-            if(password_verify($_POST['password'],$data['password'])){
-                if($dateJour > $data['date_password']){
-                    $status = 2;
-                    $msg = encrypt($data['id_user']);
+            $idUser = $data['id_user'];
+            $requeteDB = "SELECT COUNT(*) as `Nbre` FROM `login` WHERE `user_id` = '".mysqli_real_escape_string($GLOBALS['Database'],$idUser) . "'";
+            $resultDB = mysqli_query($GLOBALS['Database'], $requeteDB) or die;
+            error_log($requeteDB);
+            if ($dataDB = mysqli_fetch_array($resultDB)){
+                error_log(json_encode($dataDB));
+                if ($dataDB['Nbre'] >=3){
+                    $status = 0;
+                    $msg = 'Compte bloqué, veuillez retenter plus tard';
+                }else if(password_verify($_POST['password'],$data['password'])){
+                    if($dateJour > $data['date_password']){
+                        $status = 2;
+                        $msg = encrypt($data['id_user']);
+                    }else{
+                        $status = 1;
+                        $msg = 'Vous êtes connecté';
+                        $_SESSION['id'] = encrypt($data['id_user']);
+                    } 
                 }else{
-                    $status = 1;
-                    $msg = 'Vous êtes connecté';
-                    $_SESSION['id'] = encrypt($data['id_user']);
+                    $requete2 = "INSERT INTO `login` (`user_id`, `log_date`) VALUES ('". mysqli_real_escape_string($GLOBALS['Database'],$idUser) ."','". mysqli_real_escape_string($GLOBALS['Database'],$dateJour)."')";
+                    mysqli_query($GLOBALS['Database'], $requete2) or die;
+                    $status = 0;
+                    $msg = 'Mauvais mot de passe'; 
                 } 
             }
+            
         }else{
             $status = 0;
             $msg = 'Utilisateur inconnu';
@@ -209,6 +223,7 @@ switch($_POST['request']){
     case 'modifyPassword':
         $msg = '';
         $status = '';
+        $token = $_POST['token'];
         $requete = "SELECT * FROM `users` WHERE `login` = '".mysqli_real_escape_string($GLOBALS['Database'],$_POST['login']) . "'";
         $result = mysqli_query($GLOBALS['Database'], $requete)or die;
         if ($data = mysqli_fetch_array($result)){
@@ -217,9 +232,8 @@ switch($_POST['request']){
             $nomUser = $data['nom'];
             $prenomUser = $data['prenom'];
             $loginUser = $_POST['login'];
-            $requete = "SELECT * FROM `requetes` WHERE `id_user` = '".mysqli_real_escape_string($GLOBALS['Database'],$idUser) . "'";
-            $result = mysqli_query($GLOBALS['Database'], $requete)or die;
-            error_log($requete);
+            $requete1 = "SELECT * FROM `requetes` WHERE `id_user` = '".mysqli_real_escape_string($GLOBALS['Database'],$idUser) . "'";
+            $result = mysqli_query($GLOBALS['Database'], $requete1)or die;
             if ($data = mysqli_fetch_array($result)){
                 $crypt = $data['hash_user'];
                 $validiteHash = $data['validite'];
@@ -232,11 +246,11 @@ switch($_POST['request']){
                         $msg = 'Les mots de passe ne correspondent pas';
                     }else{
                         $user = new User($idUser);
-                        $user->setNom($nomUser);
-                        $user->setPrenom($prenomUser);
-                        $user->setPassword($_POST['passwd1']);
-                        $user->setLogin($loginUser);
+                        $user->setPassword($_POST['passwd1']);     
                         $user->update();
+                        $requete2 = "UPDATE `requetes` SET `validite`='". mysqli_real_escape_string($GLOBALS['Database'],'1') ."' WHERE `hash_user`='".mysqli_real_escape_string($GLOBALS['Database'],$token)."'";
+                        $result2 = mysqli_query($GLOBALS['Database'], $requete2)or die;
+                        error_log($requete2);
                         $status = 3;
                     }
                 }
