@@ -7,6 +7,8 @@
     <title>Document</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.tailgrids.com/tailgrids-fallback.css" />
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="script.js" type="text/javascript"></script>
 
 </head>
@@ -37,19 +39,70 @@
             Véhicules en attente
           </h2>
         </div>
-        <table class="border-separate border border-slate-500 rounded">
-        <thead>
-          <tr>
-            <th class="border border-slate-600">Marque</th>
-            <th class="border border-slate-600">Modele</th>
-            <th class="border border-slate-600">Immatriculation</th>
-          </tr>
-        </thead>
-        <tbody id="interventionTab">
-          
-         
-        </tbody>
-        
+<section class="bg-white py-20 lg:py-[120px]">
+   <div class="container">
+      <div class="flex flex-wrap -mx-4">
+         <div class="w-full px-0">
+            <div class="max-w-full overflow-x-auto">
+               <table class="table-auto w-full">
+                  <thead>
+                     <tr class="bg-primary text-center">
+                        <th
+                           class="
+                           w-1/6
+                           min-w-[160px]
+                           text-lg
+                           font-semibold
+                           text-white
+                           py-4
+                           lg:py-4
+                           px-3
+                           lg:px-4
+                           border-l border-transparent
+                           "
+                           >
+                           Marque
+                        </th>
+                        <th
+                           class="
+                           w-1/6
+                           min-w-[160px]
+                           text-lg
+                           font-semibold
+                           text-white
+                           py-4
+                           lg:py-4
+                           px-3
+                           lg:px-4
+                           "
+                           >
+                          Modèle
+                        </th>
+                        <th
+                           class="
+                           w-1/6
+                           min-w-[160px]
+                           text-lg
+                           font-semibold
+                           text-white
+                           py-4
+                           lg:py-4
+                           px-3
+                           lg:px-4
+                           "
+                           >
+                           Immatriculation
+                        </th>
+                     </tr>
+                  </thead>
+                  <tbody id="interventionTab" class="">
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
     </div>
   </div>
 <script>
