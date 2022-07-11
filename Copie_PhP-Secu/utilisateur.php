@@ -27,7 +27,7 @@ public function __construct ($id){
       }
 }
     public function generate(){
-        $datePassword = date("Y-m-d", strtotime("+1 month"));    
+        $datePassword = date("Y-m-d H:i:s", strtotime("+1 month"));    
         $requete = "INSERT INTO `users` (`nom`, `prenom`, `login`, `password`, `date_password`) VALUES ('". mysqli_real_escape_string($GLOBALS['Database'],$this->nom) ."','". mysqli_real_escape_string($GLOBALS['Database'],$this->prenom)."','". mysqli_real_escape_string($GLOBALS['Database'],$this->login) ."','". mysqli_real_escape_string($GLOBALS['Database'],$this->password) ."','". mysqli_real_escape_string($GLOBALS['Database'],$datePassword) ."')";
         error_log($requete);
         mysqli_query($GLOBALS['Database'], $requete) or die;

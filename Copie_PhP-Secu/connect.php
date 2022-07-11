@@ -64,22 +64,36 @@ switch($_POST['request']){
 
 
     case 'login':
-        $dateJour = date("Y-m-d");
+        $dateJour = date("Y-m-d H:i:s");
         $requete = "SELECT * FROM `users` WHERE `login` = '".mysqli_real_escape_string($GLOBALS['Database'],$_POST['login']) . "'";
-        $result = mysqli_query($GLOBALS['Database'], $requete)or die;
+        $result = mysqli_query($GLOBALS['Database'], $requete) or die;
         if ($data = mysqli_fetch_array($result)){
-            $status = 0;
-            $msg = 'Mauvais mot de passe'; 
-            if(password_verify($_POST['password'],$data['password'])){
-                if($dateJour > $data['date_password']){
-                    $status = 2;
-                    $msg = encrypt($data['id_user']);
+            $idUser = $data['id_user'];
+            $requeteDB = "SELECT COUNT(*) as `Nbre` FROM `login` WHERE `user_id` = '".mysqli_real_escape_string($GLOBALS['Database'],$idUser) . "'";
+            $resultDB = mysqli_query($GLOBALS['Database'], $requeteDB) or die;
+            error_log($requeteDB);
+            if ($dataDB = mysqli_fetch_array($resultDB)){
+                error_log(json_encode($dataDB));
+                if ($dataDB['Nbre'] >=3){
+                    $status = 0;
+                    $msg = 'Compte bloqué, veuillez retenter plus tard';
+                }else if(password_verify($_POST['password'],$data['password'])){
+                    if($dateJour > $data['date_password']){
+                        $status = 2;
+                        $msg = encrypt($data['id_user']);
+                    }else{
+                        $status = 1;
+                        $msg = 'Vous êtes connecté';
+                        $_SESSION['id'] = encrypt($data['id_user']);
+                    } 
                 }else{
-                    $status = 1;
-                    $msg = 'Vous êtes connecté';
-                    $_SESSION['id'] = encrypt($data['id_user']);
+                    $requete2 = "INSERT INTO `login` (`user_id`, `log_date`) VALUES ('". mysqli_real_escape_string($GLOBALS['Database'],$idUser) ."','". mysqli_real_escape_string($GLOBALS['Database'],$dateJour)."')";
+                    mysqli_query($GLOBALS['Database'], $requete2) or die;
+                    $status = 0;
+                    $msg = 'Mauvais mot de passe'; 
                 } 
             }
+            
         }else{
             $status = 0;
             $msg = 'Utilisateur inconnu';
@@ -94,30 +108,30 @@ switch($_POST['request']){
     echo json_encode($status);
     break;
 
-    case 'account':
-        $user = new User(decrypt($_SESSION['id']));
-        if ($user->is_logged()) {
-            echo json_encode(array("login" => $user->getLogin(), "nom" => $user->getNom(), "prenom" => $user->getPrenom()));
-        }
-    break;
+    // case 'account':
+    //     $user = new User(decrypt($_SESSION['id']));
+    //     if ($user->is_logged()) {
+    //         echo json_encode(array("login" => $user->getLogin(), "nom" => $user->getNom(), "prenom" => $user->getPrenom()));
+    //     }
+    // break;
 
-    case 'account_link':
-        $user = new User(decrypt($_SESSION['id']));
-        $log = 1;
-        $msg = '';
-        $requete = "SELECT * FROM `users` WHERE `id_user` = '" .mysqli_real_escape_string($GLOBALS['Database'],decrypt($_SESSION['id'])) . "'";
-        error_log($requete);
-        $result = mysqli_query($GLOBALS['Database'], $requete)or die;
-        if ($data = mysqli_fetch_array($result)){
-            $log = 0;
-            // error_log(json_encode($data));
-            if($user->is_logged()){
-                $log=1; 
-                $msg= 'Bienvenue, '.$data['prenom'];
-            } 
-        }
-        echo json_encode(array('log' => $log, 'msg'=> $msg));
-    break;
+    // case 'account_link':
+    //     $user = new User(decrypt($_SESSION['id']));
+    //     $log = 1;
+    //     $msg = '';
+    //     $requete = "SELECT * FROM `users` WHERE `id_user` = '" .mysqli_real_escape_string($GLOBALS['Database'],decrypt($_SESSION['id'])) . "'";
+    //     error_log($requete);
+    //     $result = mysqli_query($GLOBALS['Database'], $requete)or die;
+    //     if ($data = mysqli_fetch_array($result)){
+    //         $log = 0;
+    //         // error_log(json_encode($data));
+    //         if($user->is_logged()){
+    //             $log=1; 
+    //             $msg= 'Bienvenue, '.$data['prenom'];
+    //         } 
+    //     }
+    //     echo json_encode(array('log' => $log, 'msg'=> $msg));
+    // break;
 
         
     case 'modification':
