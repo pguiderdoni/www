@@ -19,15 +19,15 @@
 </head>
 <body class="h-screen bg-no-repeat bg-cover" style="background-image: url(img/blancN.jpg) ;">
       <nav
-        class="flex grid grid-cols-3 content-center rounded-3xl h-14 bg-gradient-to-r from-slate-400 to-neutral-900">
+        class="grid grid-cols-3 content-center h-14 bg-gradient-to-r from-slate-400 to-neutral-900">
             <div
               class="col-span-3 sm:col-span-2 flex justify-around sm:justify-start sm:gap-5 pt-8 sm:pt-1 sm:pl-4">
               <a id="navLink" href="login.php"
-                class="text-white text-base md:text-lg hover:text-red-600 hover:underline"
+                class="text-white md:text-lg hover:text-red-600 hover:underline"
                 >Connexion</a>
             </div>
             <div class="flex justify-end invisible sm:visible sm:pr-3 sm:gap-4">
-              <div class="text-white text-base sm:pt-1 sm:text-lg">
+              <div class="text-white sm:pt-1 sm:text-lg">
                 <a
                 id="logName"
                   data-bs-toggle="tooltip"
@@ -101,7 +101,7 @@
               <button
                 type="submit"
                 value="signup"
-                class="group mt-2 relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-3xl text-white bg-gradient-to-r from-slate-400 to-neutral-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                class="group mt-2 relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-xl text-white bg-gradient-to-r from-slate-400 to-neutral-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                 <span class="absolute left-0 inset-y-0 flex items-center pl-3">
                   <svg
                     class="h-5 w-5 text-yellow-500 group-hover:text-indigo-400"
@@ -119,7 +119,7 @@
               </button>
               
             </div>
-            <a href="login.php"><h1 class="flex justify-center mt-5 underline">Déjà inscrit? Connectez-vous</h1></a>
+            <a href="login.php"><span class="flex justify-center mt-5 underline hover:text-red-600">Déjà inscrit? Connectez-vous</span></a>
         </form>
         
     </div>

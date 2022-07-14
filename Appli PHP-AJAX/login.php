@@ -18,7 +18,7 @@
 </head>
 <body class="h-screen bg-no-repeat bg-cover" style="background-image: url(img/blancN.jpg) ;">
       <nav
-        class="flex grid grid-cols-3 content-center rounded-3xl h-14 bg-gradient-to-r from-slate-400 to-neutral-900">
+        class="flex grid grid-cols-3 content-center h-14 bg-gradient-to-r from-slate-400 to-neutral-900">
             <div
               class="col-span-3 sm:col-span-2 flex justify-around sm:justify-start sm:gap-5 pt-8 sm:pt-1 sm:pl-4">
               <a id="navLink" href="inscription.php"
@@ -42,7 +42,7 @@
       </nav>
     <span id="champLogin" class="flex items-center ml-5">
       <div id="loginForm" class="grid justify-items-center mx-auto">
-          <h2 class="self-end mb-2 font-bold">Déjà inscrit? connectez-vous:<h2>
+          <h2 class="self-end mb-2 mt-4 font-bold">Déjà inscrit? connectez-vous:<h2>
           <form action="javascript:login();" class="grid justify-items-center w-80 space-y-6" method="POST">
             <div class="rounded-3xl shadow-sm -space-y-px">
                 <div>
@@ -70,7 +70,7 @@
                   <button
                     type="submit"
                     value="connexion"
-                    class="w-48 group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-3xl text-white bg-gradient-to-r from-slate-400 to-neutral-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    class="w-48 group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-xl text-white bg-gradient-to-r from-slate-400 to-neutral-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     <span class="absolute left-0 inset-y-0 flex items-center pl-3">
                       <svg
                         class="h-5 w-5 text-yellow-500 group-hover:text-indigo-400"
@@ -87,7 +87,7 @@
                     Se Connecter
                   </button>
               </div>
-            <a id="forgetPassword" class="underline" href="#">Mot de passe oublié?</a>
+            <a id="forgetPassword" class="underline hover:text-red-600" href="#">Mot de passe oublié?</a>
           </form>
         </div>
     </span>

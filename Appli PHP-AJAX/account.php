@@ -15,8 +15,8 @@
     <script src="script.js" type="text/javascript"></script>
 </head>
 <body class="h-screen bg-no-repeat bg-cover" style="background-image: url(img/blancN.jpg) ;">
-<nav
-        class="flex grid grid-cols-3 content-center rounded-3xl h-14 bg-gradient-to-r from-slate-400 to-neutral-900">
+      <nav
+        class="flex grid grid-cols-3 content-center h-14 bg-gradient-to-r from-slate-400 to-neutral-900">
         <div
           class="col-span-3 sm:col-span-2 flex justify-around sm:justify-start sm:gap-5 pt-8 sm:pt-1 sm:pl-4">
           <a id="navLink2" href=""
@@ -59,7 +59,7 @@
               </div>
           <input id="accPrenom" class="py-2 border border-neutral-700 rounded" value="" type="text">
           <div class="flex justify-end"><a href="#" id="upDate" type="btn"
-            class="bg-gradient-to-r from-slate-400 to-neutral-900 hover:bg-blue-700 text-white text-sm font-bold py-2 px-4 rounded-full">Mettre a jour</a>
+            class="bg-gradient-to-r from-slate-400 to-neutral-900 hover:bg-blue-700 text-white text-sm font-bold py-2 px-4 rounded-xl">Mettre a jour</a>
             </div>
           </div>
         <hr />
@@ -72,9 +72,8 @@
           </div>
         </dl>
         <div class="grid py-1 flex justify-items-end">
-          
             <a href="#" id="deleteAccount" type="btn"
-            class="my-3 mx-2 self-end bg-gradient-to-r from-red-400 to-red-700 hover:bg-blue-700 text-white text-sm font-bold py-2 px-4 rounded-full">Supprimer mon Compte</a>
+            class="my-3 mx-2 self-end bg-gradient-to-r from-red-400 to-red-700 hover:bg-blue-700 text-white text-sm font-bold py-2 px-4 rounded-xl">Supprimer mon Compte</a>
         </div>
       </div>
         <br>
@@ -83,7 +82,7 @@
                 id="logout"
                 type="submit"
                 value="deconnexion"
-                class="w-48 group relative justify-self-center flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-3xl text-white bg-gradient-to-r from-slate-400 to-neutral-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                class="w-48 group relative justify-self-center flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-xl text-white bg-gradient-to-r from-slate-400 to-neutral-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                 <span class="absolute left-0 inset-y-0 flex items-center pl-3">
                     <svg
                       class="h-5 w-5 text-yellow-500 group-hover:text-indigo-400"

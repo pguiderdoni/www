@@ -182,14 +182,14 @@ switch($_POST['request']){
     break;
 
     case 'forgetPassword':
-        $demandeLogin = '<form class="grid grid justify-items-center mx-auto" action="javascript:password_recovery();">
-                        <h1>Renseignez votre login: </h1>
+        $demandeLogin = '<form class="grid grid justify-items-center mt-4" action="javascript:password_recovery();">
+                        <h1 class="mb-2">Renseignez votre login: </h1>
                         <label for="mail" class="sr-only">Email address</label>
                         <input
                         id="recoveryLogin"
                         name="mail"
                         type="text"
-                        class="appearance-none  rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                        class="appearance-none  rounded-md relative block w-full mb-2 px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                         placeholder= "Entrez l\'adresse mail"/>
                         <div><button
                         type="submit"
@@ -197,6 +197,7 @@ switch($_POST['request']){
                         class="group mt-2 relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-3xl text-white bg-gradient-to-r from-slate-400 to-neutral-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                         <span class="absolute left-0 inset-y-0 flex items-center pl-3">
                         </span> Demander un nouveau mot de passe</button></div>
+                        <a href="login.php" class="mt-4 underline hover:text-red-600">Annuler et retourner à la connexion</a>
                         </form>';               
         echo json_encode($demandeLogin);
     break;
