@@ -30,48 +30,41 @@
           </div>
         </div>
       </nav>
-     
-      </table>
       <div class="flex justify-center mr-5 py-12 px-4 sm:px-6 lg:px-8">
-    <div class="grid align max-w-md w-full space-y-8">
-        <div class="grid">
-          <h2 class="mt-2 text-center text-3xl font-extrabold text-black">
-            Véhicules en attente
-          </h2>
-        </div>
-         <section class="bg-white ">
-            <div class="container">
-               <div class="flex flex-wrap -mx-4">
-                  <div class="w-full px-0">
-                     <div class="max-w-full overflow-x-auto">
-                        <table class="table-auto w-full">
-                           <thead>
-                              <tr class="bg-gradient-to-r from-slate-400 to-neutral-900 text-center">
-                                 <th class="w-1/6 min-w-[160px] text-lg font-semibold text-white py-4 lg:py-4 px-3 lg:px-4 border-r border-white">
-                                    Marque
-                                 </th>
-                                 <th class="w-1/6 min-w-[160px] text-lg font-semibold text-white py-4 lg:py-4 px-3 lg:px-4 border-r border-white">
-                                    Modèle
-                                 </th>
-                                 <th class="w-1/6 min-w-[160px] text-lg font-semibold text-white py-4 lg:py-4 px-3 lg:px-4 border-l border-transparent">
-                                    Immatriculation
-                                 </th>
-                              </tr>
-                           </thead>
-                           <tbody id="interventionTab">
-                           </tbody>
-                        </table>
+         <div class="grid align max-w-md w-full space-y-8">
+            <div class="grid">
+               <h2 class="mt-2 text-center text-3xl font-extrabold text-black">
+                  Véhicules en attente
+               </h2>
+            </div>
+               <section class="bg-white ">
+                  <div class="container">
+                     <div class="flex flex-wrap -mx-4">
+                        <div class="w-full px-0">
+                           <div class="max-w-full overflow-x-auto">
+                              <table class="table-auto w-full">
+                                 <thead>
+                                    <tr class="bg-gradient-to-r from-slate-400 to-neutral-900 text-center">
+                                       <th class="w-1/6 min-w-[160px] text-lg font-semibold text-white py-4 lg:py-4 px-3 lg:px-4 border-r border-white">
+                                          Marque
+                                       </th>
+                                       <th class="w-1/6 min-w-[160px] text-lg font-semibold text-white py-4 lg:py-4 px-3 lg:px-4 border-r border-white">
+                                          Modèle
+                                       </th>
+                                       <th class="w-1/6 min-w-[160px] text-lg font-semibold text-white py-4 lg:py-4 px-3 lg:px-4 border-l border-transparent">
+                                          Immatriculation
+                                       </th>
+                                    </tr>
+                                 </thead>
+                                 <tbody id="interventionTab">
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
                      </div>
                   </div>
-               </div>
+               </section>
             </div>
-         </section>
       </div>
-   </div>
-<script>
-  $(document).ready(function () {
-  interventionLoad();
-});
-</script>
 </body>
 </html>

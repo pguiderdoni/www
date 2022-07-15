@@ -11,7 +11,7 @@
 
 </head>
 <body class="h-screen bg-no-repeat bg-cover" style="">
-<nav
+      <nav
         class="flex grid grid-cols-3 content-center rounded-3xl h-14 bg-gradient-to-r from-slate-400 to-neutral-900">
         <div
           class="col-span-3 sm:col-span-2 flex justify-around sm:justify-start sm:gap-5 pt-8 sm:pt-1 sm:pl-4">
@@ -28,99 +28,119 @@
           </div>
         </div>
       </nav>
-<div class="flex justify-center mr-5 py-12 px-4 sm:px-6 lg:px-8">
-    <div class="grid align max-w-md w-full space-y-8">
-        <div class="grid">
-          <h2 class="mt-2 text-center text-3xl font-extrabold text-black">
-            Nouveau Véhicule
-          </h2>
-        </div>
-        <form class="justify-self-center space-y-4 w-80" action="javascript:newVehicule();" method="POST">
-          <div class="rounded-md shadow-sm -space-y-px">
+<div class="flex justify-center gap-x-48">
+<div class="grid align mt-5 mr-5 py-12 px-4 sm:px-6 lg:px-8">
+      <div class="grid">
+        <h2 class="text-center text-3xl font-extrabold text-black mb-5">
+          Nouveau Véhicule
+        </h2>
+      </div>
+      <form class="justify-self-center space-y-4 w-80" action="javascript:newVehicule();" method="POST">    
+          <div class="relative inline-flex mb-5">
+            <span>Selectionez la marque du véhicule:</span>
+            <svg class="w-2 h-2 absolute top-0 right-0 m-4 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 232"><path d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z" fill="#648299" fill-rule="nonzero"/></svg>
+            <select id="carBrand" onchange="modelesLoad();" class="border border-gray-300 rounded-xl text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
+            
           
-          <div>
-            <!-- component -->
-            <!-- This is an example component -->
-            <div class="relative inline-flex mb-5">
-              <span>Selectionez la marque du véhicule:</span>
-              <svg class="w-2 h-2 absolute top-0 right-0 m-4 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 232"><path d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z" fill="#648299" fill-rule="nonzero"/></svg>
-              <select id="carBrand" onchange="modelesLoad();" class="border border-gray-300 rounded-xl text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
-                
-              </select>
-            </div> 
-            <div>
-            <!-- component -->
-            <!-- This is an example component -->
-            <div class="relative inline-flex mb-5">
-              <span class="mr-4">Selectionez le modèle: </span>
-              <svg class="w-2 h-2 absolute top-0 right-0 m-4 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 232"><path d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z" fill="#648299" fill-rule="nonzero"/></svg>
-              <select id="carModel"  class="border border-gray-300 rounded-xl text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
-                <option>Modèle</option>
-              </select>
+          </select>
+          </div> 
+
+          <div class="relative inline-flex mb-5">
+            <span class="mr-4">Selectionez le modèle: </span>
+            <svg class="w-2 h-2 absolute top-0 right-0 m-4 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 232"><path d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z" fill="#648299" fill-rule="nonzero"/></svg>
+            <select id="carModel"  class="justify-self-end border border-gray-300 rounded-xl text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
+              <option>Modèle</option>
+            </select>
+          </div> 
+
+            <div class="mb-5">
+              <label for="carImmat" class="sr-only">Immatriculation</label>
+              <input
+                id="carImmat"
+                name="carImmat"
+                type="text"
+                class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                placeholder="Immatriculation"/>
             </div>   
 
-          
-          <!-- <label for="carBrand" class="sr-only">...autres marques</label>
-          <input
-                  id="carBrand"
-                  name="carBrand"
-                  type="text"
-                  class="appearance-none  rounded-t-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                  placeholder="...autres marques"/>
-              </div> -->
-              <!-- <div>
-                <label for="carModel" class="sr-only">Modèle</label>
-                <input
-                  id="carModel"
-                  name="carModel"
-                  type="text"
-                  class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                  placeholder="Modèle"/>
-              </div> -->
-              <div class="mb-5">
-                <label for="carImmat" class="sr-only">Immatriculation</label>
-                <input
-                  id="carImmat"
-                  name="carImmat"
-                  type="text"
-                  class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                  placeholder="Immatriculation"/>
-              </div>     
-              <div class="mb-5">
-                <label for="carPower" class="sr-only">Puissance</label>
-                <input
-                  id="carPower"
-                  name="carPower"
-                  type="text"
-                  required
-                  class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                  placeholder="Puissance"/>
-              </div>
-            <div class="grid">
-              <button
-                type="submit"
-                value="signup"
-                class="group mt-2 relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-3xl text-white bg-gradient-to-r from-slate-400 to-neutral-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                <span class="absolute left-0 inset-y-0 flex items-center pl-3">
-                  <svg
-                    class="h-5 w-5 text-yellow-500 group-hover:text-indigo-400"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                    aria-hidden="true">
-                    <path
-                      fill-rule="evenodd"
-                      d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
-                      clip-rule="evenodd"/>
-                  </svg>
-                </span>
-                Enregistrer le véhicule
-              </button>
+            <div class="mb-5">
+              <label for="carPower" class="sr-only">Puissance</label>
+              <input
+                id="carPower"
+                name="carPower"
+                type="text"
+                required
+                class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                placeholder="Puissance"/>
             </div>
-        </form> 
-    </div>
-  </div>
-  <script>
-</script>
+
+          <div class="grid">
+            <button
+              type="submit"
+              value="signup"
+              class="group mt-2 relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-3xl text-white bg-gradient-to-r from-slate-400 to-neutral-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+              <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+                <svg
+                  class="h-5 w-5 text-yellow-500 group-hover:text-indigo-400"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  aria-hidden="true">
+                  <path
+                    fill-rule="evenodd"
+                    d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                    clip-rule="evenodd"/>
+                </svg>
+              </span>
+              Enregistrer le véhicule
+            </button>
+          </div>
+      </form> 
+</div>
+<div class="flex justify-center mt-5 mr-5 py-12 px-4 sm:px-6 lg:px-8">
+         <div class="grid align max-w-md w-full space-y-8">
+            <div class="grid">
+               <h2 class="mt-2 text-center text-3xl font-extrabold text-black">
+                  Véhicules terminés
+               </h2>
+            </div>
+               <section class="bg-white ">
+                  <div class="container">
+                     <div class="flex flex-wrap -mx-4">
+                        <div class="w-full px-0">
+                           <div class="max-w-full overflow-x-auto">
+                              <table class="table-auto w-full">
+                                 <thead>
+                                    <tr class="bg-gradient-to-r from-slate-400 to-neutral-900 text-center">
+                                       <th class="w-1/6 min-w-[160px] text-lg font-semibold text-white py-4 lg:py-4 px-3 lg:px-4 border-r border-white">
+                                          Marque
+                                       </th>
+                                       <th class="w-1/6 min-w-[160px] text-lg font-semibold text-white py-4 lg:py-4 px-3 lg:px-4 border-r border-white">
+                                          Modèle
+                                       </th>
+                                       <th class="w-1/6 min-w-[160px] text-lg font-semibold text-white py-4 lg:py-4 px-3 lg:px-4 border-l border-transparent">
+                                          Immatriculation
+                                       </th>
+                                    </tr>
+                                 </thead>
+                                 <tbody id="finishTab">
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </section>
+            </div>
+      </div>
+
+
+
+
+
+</div>
+
+  
+
 </body>
 </html>

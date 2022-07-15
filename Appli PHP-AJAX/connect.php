@@ -228,7 +228,6 @@ switch($_POST['request']){
         $requete = "SELECT * FROM `users` WHERE `login` = '".mysqli_real_escape_string($GLOBALS['Database'],$_POST['login']) . "'";
         $result = mysqli_query($GLOBALS['Database'], $requete)or die;
         if ($data = mysqli_fetch_array($result)){
-            // utilisateur connu
             $idUser = $data['id_user'];
             $nomUser = $data['nom'];
             $prenomUser = $data['prenom'];
