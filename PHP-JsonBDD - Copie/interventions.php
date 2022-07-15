@@ -1,4 +1,4 @@
-<?php session_start();?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,18 +10,16 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://kit.fontawesome.com/a1b11d373d.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="iziToast.css">
-    <script src="iziToast.js" type="text/javascript"></script>
     <script src="script.js" type="text/javascript"></script>
 </head>
-<body class="h-screen bg-no-repeat bg-cover" style="background-image: url(img/blancN.jpg) ;">
-<nav
-        class="flex grid grid-cols-3 content-center rounded-3xl h-14 bg-gradient-to-r from-slate-400 to-neutral-900">
+<body class="h-screen bg-no-repeat bg-cover" style="">
+    <nav
+        class="grid grid-cols-3 content-center rounded-3xl h-14 bg-gradient-to-r from-slate-400 to-neutral-900">
         <div
           class="col-span-3 sm:col-span-2 flex justify-around sm:justify-start sm:gap-5 pt-8 sm:pt-1 sm:pl-4">
-          <a id="navLink2" href=""
+          <a id="navLink2" href="base.php"
             class="text-white text-base md:text-lg hover:text-red-600 hover:underline"
-            >Mon Compte</a>
+            >Engregistrer un véhicule</a>
         </div>
         <div class="flex justify-end invisible sm:visible sm:pr-3 sm:gap-4">
           <div class="text-white text-base sm:pt-1 sm:text-lg">
@@ -30,51 +28,40 @@
               title="Vers mes notes"
               href="/account"></a>
           </div>
-          <span class="text-white self-center" id="welcomeMsg"></span>
-          <img
-            class="h-10 w-auto"
-            src="img/ishi.png"
-            alt="Workflow"/>
         </div>
       </nav>
 <div class="grid opacity-80 mt-5 shadow sm:rounded-lg">
   <form class="justify-self-center border-black" >
       <div class=" border border-slate-600 rounded-t-xl px-4 py-5 sm:px-6">
         <h3 class="text-lg leading-6 font-medium font-extrabold text-gray-900">
-          Mes informations personnelles:
+          Intervention suivante:
         </h3>
       </div>
     <div class="border border-slate-400 rounded-b-xl overflow-hidden ">
       <dl>
         <div
           class="flex bg-gray-50 px-2 py-5 grid grid-cols-3 gap-4 sm:grid sm:grid-cols-3 sm:gap-1 sm:px-6">
-          <dt class="text-sm font-medium text-black pt-2 font-bold">Nom:</dt>
-          <input id="accNom" class="py-2 border border-neutral-700 rounded" value="" type="text">
+          <dt class="text-sm font-medium text-black pt-2 font-bold">Marque:</dt>
+          <input id="marque_vehicule" class="py-2 border border-neutral-700 rounded" value="" type="text">
         </div>
         <hr/>
           <div
             class="flex flex-row px-2 py-5 grid grid-cols-3 gap-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
               <div class="text-sm pt-2 font-medium text-black font-bold">
-                Prénom:
+                Modèle:
               </div>
-          <input id="accPrenom" class="py-2 border border-neutral-700 rounded" value="" type="text">
-          <div class="flex justify-end"><a href="#" id="upDate" type="btn"
-            class="bg-gradient-to-r from-slate-400 to-neutral-900 hover:bg-blue-700 text-white text-sm font-bold py-2 px-4 rounded-full">Mettre a jour</a>
-            </div>
+          <input id="modele_vehicule" class="py-2 border border-neutral-700 rounded" value="" type="text">
           </div>
         <hr />
           <div
             class="bg-gray-50 flex px-2 py-5 grid grid-cols-3 gap-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
             <dt class="text-sm pt-2 font-medium text-black font-bold">
-              Adresse E-mail:
+              Immatriculation:
             </dt>
-            <input id="accMail" class="py-2 border border-neutral-700 rounded" value="" type="email">
+            <input id="immat_vehicule" class="py-2 border border-neutral-700 rounded" value="" type="text">
           </div>
         </dl>
         <div class="grid py-1 flex justify-items-end">
-          
-            <a href="#" id="deleteAccount" type="btn"
-            class="my-3 mx-2 self-end bg-gradient-to-r from-red-400 to-red-700 hover:bg-blue-700 text-white text-sm font-bold py-2 px-4 rounded-full">Supprimer mon Compte</a>
         </div>
       </div>
         <br>
@@ -97,7 +84,7 @@
                       clip-rule="evenodd"/>
                     </svg>
                   </span>
-                Se Deconnecter
+                Valider intervention
             </button>
           </div>
     </form>

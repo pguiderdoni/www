@@ -25,6 +25,7 @@ switch($_POST['request']){
         case 'interventionLoad':
             $status = 0;
             $requete = "SELECT `vehiculeJson` FROM `vehicules` WHERE `fin_intervention` = '".mysqli_real_escape_string($GLOBALS['Database'],$status) . "'";
+            error_log($requete);
             $result = mysqli_query($GLOBALS['Database'], $requete) or die;
             while ($data = mysqli_fetch_array($result)){
                 $JsonDecode[] = json_decode($data['vehiculeJson'], true);  
@@ -41,42 +42,6 @@ switch($_POST['request']){
             echo json_encode(array("status" => $status, "msg" => $html ));
         break;
 
-        case 'marquesLoad':
-            $list_marque = array();
-            $requete = " SELECT * FROM `marques`";
-            $result = mysqli_query($GLOBALS['Database'], $requete) or die;
-            $html_marque = '<option class="border border-y-slate-700">-</option>';
-            while ($data = mysqli_fetch_array($result)){
-                $list_marque[]=$data;
-
-            }
-            foreach($list_marque as $marque){
-                    $html_marque .= '<option class="border border-y-slate-700" value="'.$marque['id_marque'].'">'.$marque['nom_marque'].'</option>'
-                            ;
-                    $status = 1;
-                }
-                echo json_encode(array("status" => $status, "msg" => $html_marque ));
-        break;
-
-        case 'modelesLoad':
-            $list_modele = array();
-            $idMarque = $_POST['marque'];
-            $requete2 = " SELECT * FROM `modeles` WHERE `id_marque`='".mysqli_real_escape_string($GLOBALS['Database'],$idMarque) . "'";
-            $result2 = mysqli_query($GLOBALS['Database'], $requete2) or die;
-            $html_model ="";
-            error_log($requete2);
-            while ($data2 = mysqli_fetch_array($result2)){
-                $list_modele[]=$data2;
-
-            }
-            foreach($list_modele as $modele){
-                $html_model .= '<option class="border border-y-slate-700" value="'.$modele['id_modele'].'">'.$modele['nom_modele'].'</option>';
-                $status = 1;
-            }
-            echo json_encode(array("status" => $status, "msg" => $html_model ));
-
-
-        break;
 
 
 

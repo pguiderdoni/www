@@ -3,8 +3,7 @@ function newVehicule() {
   var modele = $("#carModel").val();
   var immatriculation = $("#carImmat").val();
   var puissance = $("#carPower").val();
-  // var marque = $("#carBrand").val();
-  // var modele = $("#carModel").val();
+
   $.ajax({
     url: "connect.php",
     dataType: "JSON",
@@ -50,52 +49,6 @@ function interventionLoad() {
   });
 }
 
-function marquesLoad() {
-  $.ajax({
-    url: "connect.php",
-    dataType: "JSON",
-    type: "POST",
-    data: {
-      request: "marquesLoad",
-    },
-    success: function (response) {
-      if (response["status"] == 1) {
-        $("#carBrand").html(response["msg"]);
-      } else if (response["status"] == 2) {
-        alert(0);
-      }
-    },
-    error: function () {
-      console.log("Erreur");
-    },
-  });
-}
-function modelesLoad() {
-  var brand = $("#carBrand").val();
-  console.log(brand);
-  $.ajax({
-    url: "connect.php",
-    dataType: "JSON",
-    type: "POST",
-    data: {
-      request: "modelesLoad",
-      marque: brand,
-    },
-    success: function (response) {
-      console.log(response);
-      if (response["status"] == 1) {
-        $("#carModel").html(response["msg"]);
-      } else if (response["status"] == 2) {
-        alert(0);
-      }
-    },
-    error: function () {
-      console.log("Erreur");
-    },
-  });
-}
-
 $(document).ready(function () {
   interventionLoad();
-  marquesLoad();
 });

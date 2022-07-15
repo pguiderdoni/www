@@ -37,38 +37,40 @@
         </div>
         <form class="justify-self-center space-y-4 w-80" action="javascript:newVehicule();" method="POST">
           <div class="rounded-md shadow-sm -space-y-px">
+          <span>Selectionnez la marque: </span> 
           
           <div>
-            <!-- component -->
-            <!-- This is an example component -->
-            <div class="relative inline-flex mb-5">
-              <span>Selectionez la marque du véhicule:</span>
-              <svg class="w-2 h-2 absolute top-0 right-0 m-4 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 232"><path d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z" fill="#648299" fill-rule="nonzero"/></svg>
-              <select id="carBrand" onchange="modelesLoad();" class="border border-gray-300 rounded-xl text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
-                
-              </select>
-            </div> 
-            <div>
-            <!-- component -->
-            <!-- This is an example component -->
-            <div class="relative inline-flex mb-5">
-              <span class="mr-4">Selectionez le modèle: </span>
-              <svg class="w-2 h-2 absolute top-0 right-0 m-4 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 232"><path d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z" fill="#648299" fill-rule="nonzero"/></svg>
-              <select id="carModel"  class="border border-gray-300 rounded-xl text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
-                <option>Modèle</option>
-              </select>
-            </div>   
+                   <!-- component -->
+                    <!-- This is an example component -->
+                    <div class="relative inline-flex">
+                      <svg class="w-2 h-2 absolute top-0 right-0 m-4 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 232"><path d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z" fill="#648299" fill-rule="nonzero"/></svg>
+                      <select class="border border-gray-300 rounded-xl text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
+                        <option>Constructeur</option>
+                        <option>Ford</option>
+                        <option>Renault</option>
+                        <option>Nissan</option>
+                        <option>Tesla</option>
+                        <option>Cupra</option>
+                        <option>Toyota</option>
+                        <option>Honda</option>
+                        <option>Volkswagen</option>
+                      </select>
+                    </div>  
 
           
-          <!-- <label for="carBrand" class="sr-only">...autres marques</label>
+          <label for="carBrand" class="sr-only">...autres marques</label>
           <input
                   id="carBrand"
                   name="carBrand"
                   type="text"
                   class="appearance-none  rounded-t-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                   placeholder="...autres marques"/>
-              </div> -->
-              <!-- <div>
+              </div>
+
+             
+                
+               
+              <div>
                 <label for="carModel" class="sr-only">Modèle</label>
                 <input
                   id="carModel"
@@ -76,8 +78,8 @@
                   type="text"
                   class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                   placeholder="Modèle"/>
-              </div> -->
-              <div class="mb-5">
+              </div>
+              <div>
                 <label for="carImmat" class="sr-only">Immatriculation</label>
                 <input
                   id="carImmat"
@@ -86,7 +88,7 @@
                   class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                   placeholder="Immatriculation"/>
               </div>     
-              <div class="mb-5">
+              <div>
                 <label for="carPower" class="sr-only">Puissance</label>
                 <input
                   id="carPower"
@@ -120,7 +122,7 @@
         </form> 
     </div>
   </div>
-  <script>
-</script>
+
+  
 </body>
 </html>

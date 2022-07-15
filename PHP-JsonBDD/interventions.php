@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -87,7 +85,7 @@
                 Valider intervention
             </button>
           </div>
-    </form>
+      </form>
   </div>
 </body>
 </html>
