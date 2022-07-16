@@ -33,7 +33,6 @@ switch($_POST['request']){
             }
             $html = '';
             foreach($list_vehicule as $vehicule){
-
                 $vehicule_info = json_decode($vehicule['vehiculeJson'],true);
                 $requete2 = "SELECT `nom_marque`,`nom_modele` FROM `marques` 
                             INNER JOIN `modeles` 
@@ -44,22 +43,20 @@ switch($_POST['request']){
                 if ($data2 = mysqli_fetch_array($result2)){
                     $marque = $data2['nom_marque'];  
                     $modele = $data2['nom_modele'];
-                    $html .= '<tr>w
+                    $html .= '<tr>
                             <th class="border border-y-slate-700">'.$marque.'</th>
                             <th class="border border-y-slate-700">'.$modele.'</th>
                             <th class="border border-y-slate-700">'.$vehicule_info['immat'].'</th>
-                            <th class="border border-y-slate-700"><button onchange="interventionOk();">Intervention terminée</button></th>
+                            <th class="border border-y-slate-700"><button onclick="interventionOk();">Intervention terminée</button></th>
                           </tr>';
                     $status = 1;
-                }
-                
-                
+                }  
             }
             error_log($html);
             echo json_encode(array("status" => $status, "msg" => $html ));
         break;
 
-      
+  
         
         case 'finishLoad':
             $status = 1;
@@ -72,7 +69,6 @@ switch($_POST['request']){
             }
             $html = '';
             foreach($list_vehicule as $vehicule){
-
                 $vehicule_info = json_decode($vehicule['vehiculeJson'],true);
                 $requete2 = "SELECT `nom_marque`,`nom_modele` FROM `marques` 
                             INNER JOIN `modeles` 
@@ -89,8 +85,7 @@ switch($_POST['request']){
                             <th class="border border-y-slate-700">'.$vehicule_info['immat'].'</th>
                           </tr>';
                     $status = 1;
-                }
-                
+                }             
             }
             error_log($html);
             echo json_encode(array("status" => $status, "msg" => $html ));
@@ -103,7 +98,6 @@ switch($_POST['request']){
             $html_marque = '<option class="border border-y-slate-700">-</option>';
             while ($data = mysqli_fetch_array($result)){
                 $list_marque[]=$data;
-
             }
             foreach($list_marque as $marque){
                     $html_marque .= '<option class="border border-y-slate-700" value="'.$marque['id_marque'].'">'.$marque['nom_marque'].'</option>'
