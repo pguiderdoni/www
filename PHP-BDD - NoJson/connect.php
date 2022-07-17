@@ -37,7 +37,6 @@ switch($_POST['request']){
                     WHERE `marques`.`id_marque` = '".$vehicule['nom_marque']."' 
                     AND `modeles`.`id_modele` = '".$vehicule['nom_modele']."'";
                     $result2 = mysqli_query($GLOBALS['Database'], $requete2) or die;
-                    error_log($requete2);
                     if ($data2 = mysqli_fetch_array($result2)){ 
                     $marque = $data2['nom_marque'];  
                     $modele = $data2['nom_modele'];
@@ -46,8 +45,7 @@ switch($_POST['request']){
                             <th class="border border-y-slate-700">'.$marque.'</th>
                             <th class="border border-y-slate-700">'.$modele.'</th>
                             <th class="border border-y-slate-700">'.$immat.'</th>
-                            <th class="border border-y-slate-700"><button onclick="interventionOk();">Intervention terminée</button></th>
-                            </tr> ';
+                            <th class="border border-y-slate-700"><a onclick="interventionOk();" class="underline text-blue-600" href="liste_interventions.php?token='.$interv.'">Intervention terminée</a></th></tr>';
                     $status = 1;
                     }
                 }
@@ -56,12 +54,12 @@ switch($_POST['request']){
         break;
 
         case 'finishLoad':
+            $html  = '';
             $status = 1;
             $requete = "SELECT * FROM `vehicules`  WHERE `fin_inter` = '".mysqli_real_escape_string($GLOBALS['Database'],$status) . "'";
             $result = mysqli_query($GLOBALS['Database'], $requete) or die;
             while($data = mysqli_fetch_array($result)){
                 $list_vehicule[]=$data;
-                $html  = '';
                 foreach($list_vehicule as $vehicule){
                     $interv = $vehicule['id_inter'];
                     $immat = $vehicule['immat']; 
@@ -70,7 +68,6 @@ switch($_POST['request']){
                     WHERE `marques`.`id_marque` = '".$vehicule['nom_marque']."' 
                     AND `modeles`.`id_modele` = '".$vehicule['nom_modele']."'";
                     $result2 = mysqli_query($GLOBALS['Database'], $requete2) or die;
-                    error_log($requete2);
                     if ($data2 = mysqli_fetch_array($result2)){ 
                     $marque = $data2['nom_marque'];  
                     $modele = $data2['nom_modele'];
@@ -88,9 +85,12 @@ switch($_POST['request']){
         break;
 
         case 'interventionFinie':
-            $idInter = $_POST['num_interv'];
+            $idInter = $_POST['idInter'];
             $requete = "UPDATE `vehicules` SET `fin_inter`='". mysqli_real_escape_string($GLOBALS['Database'],'1') ."' WHERE `id_inter`='".mysqli_real_escape_string($GLOBALS['Database'],$idInter)."'";
             $result = mysqli_query($GLOBALS['Database'], $requete)or die;
+            error_log($requete);
+            $status = 1;
+            $msg = 'véhicule terminé';
             echo json_encode(array("status" => $status, "msg" => $html ));
         break;
 
