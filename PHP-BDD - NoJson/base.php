@@ -29,7 +29,7 @@
         </div>
       </nav>
 <div class="flex justify-start gap-x-48">
-<div class="grid align mt-5 mr-2 ml-10 py-12 px-4 sm:px-6 lg:px-8">
+<div class="grid align mt-5 mr-5 ml-40 py-4 px-2 sm:px-6 lg:px-2">
       <div class="grid">
         <h2 class="text-center text-3xl font-extrabold text-black mb-5">
           Nouveau Véhicule
