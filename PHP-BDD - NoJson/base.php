@@ -12,7 +12,7 @@
 </head>
 <body class="h-screen bg-no-repeat bg-cover">
       <nav
-        class="flex grid grid-cols-3 content-center rounded-3xl h-14 bg-gradient-to-r from-slate-400 to-neutral-900">
+        class="flex grid grid-cols-3 content-center h-14 bg-gradient-to-r from-slate-400 to-neutral-900">
         <div
           class="col-span-3 sm:col-span-2 flex justify-around sm:justify-start sm:gap-5 pt-8 sm:pt-1 sm:pl-4">
           <a id="navLink2" href="liste_interventions.php"
@@ -28,8 +28,8 @@
           </div>
         </div>
       </nav>
-<div class="flex justify-center gap-x-48">
-<div class="grid align mt-5 mr-5 py-12 px-4 sm:px-6 lg:px-8">
+<div class="flex justify-start gap-x-48">
+<div class="grid align mt-5 mr-2 ml-10 py-12 px-4 sm:px-6 lg:px-8">
       <div class="grid">
         <h2 class="text-center text-3xl font-extrabold text-black mb-5">
           Nouveau Véhicule
@@ -94,13 +94,17 @@
           </div>
       </form> 
 </div>
-<div class="flex justify-center mt-5 mr-5 py-12 px-4 sm:px-6 lg:px-8">
-         <div class="grid align max-w-md w-full space-y-8">
+<div class="flex justify-center mt-5 mr-5 py-4 px-2 sm:px-6 lg:px-2">
+         <div class="grid max-w-md w-full space-y-2">
             <div class="grid">
                <h2 class="mt-2 text-center text-3xl font-extrabold text-black">
                   Véhicules terminés
                </h2>
+               <button onclick="finishLoad();" class="px-2 w-20 flex self-center align-center border border-transparent text-sm font-medium rounded-full text-white bg-gradient-to-r from-slate-400 to-neutral-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+              Actualiser
+            </button>
             </div>
+           
                <section class="bg-white ">
                   <div class="container">
                      <div class="flex flex-wrap -mx-4">
@@ -108,7 +112,7 @@
                            <div class="max-w-full overflow-x-auto">
                               <table class="table-auto w-full">
                                  <thead>
-                                    <tr class="bg-gradient-to-r from-slate-400 to-neutral-900 text-center">
+                                    <tr class="bg-gradient-to-r from-slate-400 to-neutral-900 text-center">                 
                                     <th class="w-1/6 min-w-[160px] text-lg font-semibold text-white py-4 lg:py-4 px-3 lg:px-4 border-r border-white">
                                           N° d'intervention
                                        </th>
@@ -118,8 +122,11 @@
                                        <th class="w-1/6 min-w-[160px] text-lg font-semibold text-white py-4 lg:py-4 px-3 lg:px-4 border-r border-white">
                                           Modèle
                                        </th>
-                                       <th class="w-1/6 min-w-[160px] text-lg font-semibold text-white py-4 lg:py-4 px-3 lg:px-4 border-l border-transparent">
+                                       <th class="w-1/6 min-w-[160px] text-lg font-semibold text-white py-4 lg:py-4 px-3 lg:px-4 border-r border-white">
                                           Immatriculation
+                                       </th>
+                                       <th class="w-1/6 min-w-[160px] text-lg font-semibold text-white py-4 lg:py-4 px-3 lg:px-4 border-r border-white">
+                                         
                                        </th>
                                     </tr>
                                  </thead>

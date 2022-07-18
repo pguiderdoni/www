@@ -41,11 +41,12 @@ switch($_POST['request']){
                     $marque = $data2['nom_marque'];  
                     $modele = $data2['nom_modele'];
                     $html .= '<tr> 
-                            <th class="border border-y-slate-700">'.$interv.'</th>
-                            <th class="border border-y-slate-700">'.$marque.'</th>
-                            <th class="border border-y-slate-700">'.$modele.'</th>
-                            <th class="border border-y-slate-700">'.$immat.'</th>
-                            <th class="border border-y-slate-700"><a onclick="interventionOk('.$interv.');" class="underline text-blue-600" href="liste_interventions.php">Intervention terminée</a></th></tr>';
+                                <th class="border border-y-slate-700">'.$interv.'</th>
+                                <th class="border border-y-slate-700">'.$marque.'</th>
+                                <th class="border border-y-slate-700">'.$modele.'</th>
+                                <th class="border border-y-slate-700">'.$immat.'</th>
+                                <th class="border border-y-slate-700"><a type="btn" onclick="interventionOk('.$interv.');" class="underline text-blue-600" href="liste_interventions.php">Intervention terminée</a></th>
+                            </tr>';
                     $status = 1;
                     }
                 }
@@ -78,6 +79,7 @@ switch($_POST['request']){
                                 <th class="border border-y-slate-700">'.$marque.'</th>
                                 <th class="border border-y-slate-700">'.$modele.'</th>
                                 <th class="border border-y-slate-700">'.$immat.'</th>
+                                <th class="border border-y-slate-700"><a type="btn" onclick="interventionNonOk('.$interv.');" class="underline text-blue-600" href="base.php">Non terminée</a></th>
                             </tr>';
                     $status = 1;
                     }
@@ -94,6 +96,17 @@ switch($_POST['request']){
             error_log($requete);
             $status = 1;
             $msg = 'véhicule terminé';
+            echo json_encode(array("status" => $status, "html" => $html, "msg" => $msg ));
+        break;
+
+        case 'interventionNonFinie':
+            $html = '';
+            $idInter = $_POST['idInterv'];
+            $requete = "UPDATE `vehicules` SET `fin_inter`='". mysqli_real_escape_string($GLOBALS['Database'],'0') ."' WHERE `id_inter`='".mysqli_real_escape_string($GLOBALS['Database'],$idInter)."'";
+            $result = mysqli_query($GLOBALS['Database'], $requete)or die;
+            error_log($requete);
+            $status = 1;
+            $msg = 'véhicule non terminé';
             echo json_encode(array("status" => $status, "html" => $html, "msg" => $msg ));
         break;
 

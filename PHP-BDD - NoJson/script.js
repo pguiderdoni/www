@@ -70,6 +70,27 @@ function interventionOk(data) {
     },
   });
 }
+function interventionNonOk(data) {
+  var id_int = data;
+  $.ajax({
+    url: "connect.php",
+    dataType: "JSON",
+    type: "POST",
+    data: {
+      request: "interventionNonFinie",
+      idInterv: id_int,
+    },
+    success: function (response) {
+      console.log(response);
+      if (response["status"] == 1) {
+        console.log(response["msg"]);
+      }
+    },
+    error: function () {
+      console.log("Erreur");
+    },
+  });
+}
 function finishLoad() {
   $.ajax({
     url: "connect.php",
