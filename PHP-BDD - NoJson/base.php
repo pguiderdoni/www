@@ -100,7 +100,7 @@
                <h2 class="mt-2 text-center text-3xl font-extrabold text-black">
                   Véhicules terminés
                </h2>
-               <button onclick="finishLoad();" class="px-2 w-20 flex self-center align-center border border-transparent text-sm font-medium rounded-full text-white bg-gradient-to-r from-slate-400 to-neutral-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+               <button onclick="finishLoad();" class="px-2 w-20 flex self-center border border-transparent text-sm font-medium rounded-full text-white bg-gradient-to-r from-slate-400 to-neutral-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
               Actualiser
             </button>
             </div>

@@ -59,8 +59,7 @@
                                        <th class="w-1/6 min-w-[160px] text-lg font-semibold text-white py-4 lg:py-4 px-3 lg:px-4 border-l border-white">
                                           Immatriculation
                                        </th>
-                                       <th class="w-1/6 min-w-[160px] text-lg font-semibold text-white py-4 lg:py-4 px-3 lg:px-4 border-l border-white">
-                                          
+                                       <th class="w-1/6 min-w-[160px] text-lg font-semibold text-white py-4 lg:py-4 px-3 lg:px-4 border-l border-white"> 
                                        </th>
                                     </tr>
                                  </thead>

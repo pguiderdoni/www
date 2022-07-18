@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : dim. 17 juil. 2022 à 13:13
+-- Généré le : lun. 18 juil. 2022 à 14:35
 -- Version du serveur : 5.7.36
 -- Version de PHP : 7.4.26
 
@@ -80,7 +80,7 @@ INSERT INTO `modeles` (`id_modele`, `id_marque`, `nom_modele`) VALUES
 (20, 7, 'Zoe'),
 (21, 8, 'Leaf'),
 (22, 8, 'GT-R'),
-(23, 8, 'Leaf'),
+(23, 8, 'Qashqai'),
 (24, 8, 'Micra'),
 (25, 9, 'Giulietta'),
 (26, 9, '147'),
@@ -110,7 +110,7 @@ CREATE TABLE IF NOT EXISTS `vehicules` (
   `immat` varchar(15) NOT NULL,
   `fin_inter` int(10) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_inter`)
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `vehicules`
@@ -125,7 +125,10 @@ INSERT INTO `vehicules` (`id_inter`, `nom_marque`, `nom_modele`, `puissance`, `i
 (10, '7', '20', '75', 'RT676ER', 0),
 (11, '7', '17', '90', 'PD345DQ', 0),
 (12, '8', '22', '545', 'FH527PF', 0),
-(13, '5', '10', '185', 'FT768GT', 0);
+(13, '5', '10', '185', 'FT768GT', 0),
+(16, '8', '23', '156', 'ZS213CD', 0),
+(14, '11', '36', '95', 'HF323UI', 0),
+(15, '5', '12', '169', 'PD034LI', 0);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
