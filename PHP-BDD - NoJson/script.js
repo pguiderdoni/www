@@ -60,7 +60,6 @@ function interventionOk(data) {
       idInter: id_int,
     },
     success: function (response) {
-      console.log(response);
       if (response["status"] == 1) {
         console.log(response["msg"]);
       }
@@ -81,7 +80,6 @@ function interventionNonOk(data) {
       idInterv: id_int,
     },
     success: function (response) {
-      console.log(response);
       if (response["status"] == 1) {
         console.log(response["msg"]);
       }
@@ -124,7 +122,7 @@ function marquesLoad() {
       if (response["status"] == 1) {
         $("#carBrand").html(response["msg"]);
       } else if (response["status"] == 2) {
-        alert(0);
+        alert('Erreur');
       }
     },
     error: function () {
@@ -156,24 +154,67 @@ function modelesLoad() {
     },
   });
 }
-
-function $_GET(param) {
-  var vars = {};
-  window.location.href.replace(location.hash, "").replace(
-    /[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
-    function (m, key, value) {
-      // callback
-      vars[key] = value !== undefined ? value : "";
-    }
-  );
-
-  if (param) {
-    return vars[param] ? vars[param] : null;
-  }
-  return vars;
+function facturation(data){
+  var id_int = data;
+  $.ajax({
+    url: "connect.php",
+    dataType: "JSON",
+    type: "POST",
+    data: {
+      request: "factureOk",
+      idInterv: id_int,
+    },
+    success: function (response) {
+      console.log(response);
+      if (response["status"] == 1) {
+        console.log(response["msg"]);
+      }
+    },
+    error: function () {
+      console.log("Erreur");
+    },
+  });
 }
 
+function facturesLoad() {
+  $.ajax({
+    url: "connect.php",
+    dataType: "JSON",
+    type: "POST",
+    data: {
+      request: "facture_load",
+    },
+    success: function (response) {
+      if (response["status"] == 2) {
+        $("#facturesTab").html(response["html"]);
+      } else {
+        alert(0);
+      }
+    },
+    error: function () {
+      console.log("Erreur");
+    },
+  });
+}
+
+// function $_GET(param) {
+//   var vars = {};
+//   window.location.href.replace(location.hash, "").replace(
+//     /[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
+//     function (m, key, value) {
+//       // callback
+//       vars[key] = value !== undefined ? value : "";
+//     }
+//   );
+
+//   if (param) {
+//     return vars[param] ? vars[param] : null;
+//   }
+//   return vars;
+// }
+
 $(document).ready(function () {
+  facturesLoad();
   interventionLoad();
   marquesLoad();
   finishLoad();
