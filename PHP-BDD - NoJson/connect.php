@@ -40,12 +40,12 @@ switch($_POST['request']){
                     if ($data2 = mysqli_fetch_array($result2)){ 
                     $marque = $data2['nom_marque'];  
                     $modele = $data2['nom_modele'];
-                    $html .= '<tr id="numInt-'.$interv.'"> 
+                    $html .= '<tr> 
                             <th class="border border-y-slate-700">'.$interv.'</th>
                             <th class="border border-y-slate-700">'.$marque.'</th>
                             <th class="border border-y-slate-700">'.$modele.'</th>
                             <th class="border border-y-slate-700">'.$immat.'</th>
-                            <th class="border border-y-slate-700"><a onclick="interventionOk();" class="underline text-blue-600" href="liste_interventions.php?token='.$interv.'">Intervention terminée</a></th></tr>';
+                            <th class="border border-y-slate-700"><a onclick="interventionOk('.$interv.');" class="underline text-blue-600" href="liste_interventions.php">Intervention terminée</a></th></tr>';
                     $status = 1;
                     }
                 }
@@ -56,6 +56,7 @@ switch($_POST['request']){
         case 'finishLoad':
             $html  = '';
             $status = 1;
+            $msg = '';
             $requete = "SELECT * FROM `vehicules`  WHERE `fin_inter` = '".mysqli_real_escape_string($GLOBALS['Database'],$status) . "'";
             $result = mysqli_query($GLOBALS['Database'], $requete) or die;
             while($data = mysqli_fetch_array($result)){
@@ -68,30 +69,32 @@ switch($_POST['request']){
                     WHERE `marques`.`id_marque` = '".$vehicule['nom_marque']."' 
                     AND `modeles`.`id_modele` = '".$vehicule['nom_modele']."'";
                     $result2 = mysqli_query($GLOBALS['Database'], $requete2) or die;
-                    if ($data2 = mysqli_fetch_array($result2)){ 
+                } 
+                    if($data2 = mysqli_fetch_array($result2)){ 
                     $marque = $data2['nom_marque'];  
                     $modele = $data2['nom_modele'];
                     $html .= '<tr>
-                            <th class="border border-y-slate-700">'.$interv.'</th>
-                            <th class="border border-y-slate-700">'.$marque.'</th>
-                            <th class="border border-y-slate-700">'.$modele.'</th>
-                            <th class="border border-y-slate-700">'.$immat.'</th>
-                        </tr>';
+                                <th class="border border-y-slate-700">'.$interv.'</th>
+                                <th class="border border-y-slate-700">'.$marque.'</th>
+                                <th class="border border-y-slate-700">'.$modele.'</th>
+                                <th class="border border-y-slate-700">'.$immat.'</th>
+                            </tr>';
                     $status = 1;
                     }
                 }
-                }             
-            echo json_encode(array("status" => $status, "msg" => $html ));
+                            
+            echo json_encode(array("status" => $status, "msg" => $msg, "html" => $html ));
         break;
 
         case 'interventionFinie':
+            $html = '';
             $idInter = $_POST['idInter'];
             $requete = "UPDATE `vehicules` SET `fin_inter`='". mysqli_real_escape_string($GLOBALS['Database'],'1') ."' WHERE `id_inter`='".mysqli_real_escape_string($GLOBALS['Database'],$idInter)."'";
             $result = mysqli_query($GLOBALS['Database'], $requete)or die;
             error_log($requete);
             $status = 1;
             $msg = 'véhicule terminé';
-            echo json_encode(array("status" => $status, "msg" => $html ));
+            echo json_encode(array("status" => $status, "html" => $html, "msg" => $msg ));
         break;
 
         case 'marquesLoad':
@@ -103,8 +106,7 @@ switch($_POST['request']){
                 $list_marque[]=$data;
             }
             foreach($list_marque as $marque){
-                    $html_marque .= '<option class="border border-y-slate-700" value="'.$marque['id_marque'].'">'.$marque['nom_marque'].'</option>'
-                            ;
+                    $html_marque .= '<option class="border border-y-slate-700" value="'.$marque['id_marque'].'">'.$marque['nom_marque'].'</option>';
                     $status = 1;
             }
             echo json_encode(array("status" => $status, "msg" => $html_marque ));
@@ -118,24 +120,13 @@ switch($_POST['request']){
             $html_model = '<option class="border border-y-slate-700">-</option>';
             while ($data2 = mysqli_fetch_array($result2)){
                 $list_modele[]=$data2;
-
             }
             foreach($list_modele as $modele){
                 $html_model .= '<option class="border border-y-slate-700" value="'.$modele['id_modele'].'">'.$modele['nom_modele'].'</option>';
                 $status = 1;
             }
             echo json_encode(array("status" => $status, "msg" => $html_model ));
-
-
         break;
-
-
-
-
-
-
-
-
 
 default :
 echo json_encode(1) ;

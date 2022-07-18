@@ -49,24 +49,20 @@ function interventionLoad() {
   });
 }
 
-function interventionOk() {
-  var token = "";
-  if ($_GET("token") != null) {
-  var token = $_GET("token");
-  console.log(token);
-  }
+function interventionOk(data) {
+  var id_int = data;
   $.ajax({
     url: "connect.php",
     dataType: "JSON",
     type: "POST",
     data: {
       request: "interventionFinie",
-      idInter: token,
+      idInter: id_int,
     },
     success: function (response) {
       console.log(response);
       if (response["status"] == 1) {
-        alert(response["msg"]);
+        console.log(response["msg"]);
       }
     },
     error: function () {
@@ -84,7 +80,7 @@ function finishLoad() {
     },
     success: function (response) {
       if (response["status"] == 1) {
-        $("#finishTab").html(response["msg"]);
+        $("#finishTab").html(response["html"]);
       } else if (response["status"] == 2) {
         alert(response["msg"]);
       }
@@ -139,9 +135,6 @@ function modelesLoad() {
     },
   });
 }
-
-
-
 
 function $_GET(param) {
   var vars = {};
