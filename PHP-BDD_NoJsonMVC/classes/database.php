@@ -6,7 +6,7 @@ class Database{
     public function __construct(){
 
         try{
-            $this->db = mysqli_connect("localhost", "root", "", "controle_tech");
+            $this->db = mysqli_connect("localhost", "root", "", "controle_techmvc");
         } catch (RuntimeException $e){
 
             error_log($e->getMessage());

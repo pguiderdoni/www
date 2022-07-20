@@ -8,7 +8,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://kit.fontawesome.com/a1b11d373d.js" crossorigin="anonymous"></script>
-    <script src="script.js" type="text/javascript"></script>
+    <script src="../js/loadData.js" type="text/javascript"></script>
+    <script src="../js/submits.js" type="text/javascript"></script>
 </head>
 <body class="h-screen bg-no-repeat bg-cover">
     <nav
@@ -22,14 +23,6 @@
             >Facturation</a><a id="navLink4" href="liste_interventions.php"
             class="text-white text-base md:text-lg hover:text-red-600 hover:underline"
             >Interventions en cours</a>
-        </div>
-        <div class="flex justify-end invisible sm:visible sm:pr-3 sm:gap-4">
-          <div class="text-white text-base sm:pt-1 sm:text-lg">
-            <a data-bs-toggle="tooltip"
-              data-bs-placement="left"
-              title="Vers mes notes"
-              href="/account"></a>
-          </div>
         </div>
       </nav>
       <div class="flex justify-start ml-80 mr-5 py-4 px-4 sm:px-6 lg:px-8">

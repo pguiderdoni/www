@@ -7,8 +7,9 @@
     <title>Enregistrement intervention</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="script.js" type="text/javascript"></script>
-
+    <script src="../js/newVehicule.js" type="text/javascript"></script>
+    <script src="../js/loadData.js" type="text/javascript"></script>
+    <script src="../js/submits.js" type="text/javascript"></script>
 </head>
 <body class="h-screen bg-no-repeat bg-cover">
       <nav
@@ -22,14 +23,6 @@
             >Facturation</a><a id="navLink4" href="liste_interventions.php"
             class="text-white text-base md:text-lg hover:text-red-600 hover:underline"
             >Interventions en cours</a>
-        </div>
-        <div class="flex justify-end invisible sm:visible sm:pr-3 sm:gap-4">
-          <div class="text-white text-base sm:pt-1 sm:text-lg">
-            <a data-bs-toggle="tooltip"
-              data-bs-placement="left"
-              title="Vers mes notes"
-              href="/account"></a>
-          </div>
         </div>
       </nav>
 <div class="flex justify-start gap-x-48">
@@ -114,7 +107,6 @@
                                  <thead>
                                     <tr class="bg-gradient-to-r from-slate-400 to-neutral-900 text-center"> 
                                     <th class="w-1/6 min-w-[120px] text-sm font-semibold text-white py-4 lg:py-4 px-1 lg:px-2 border-r border-white">
-                                         
                                        </th>                
                                     <th class="w-1/6 min-w-[120px] text-sm font-semibold text-white py-4 lg:py-4 px-1 lg:px-2 border-r border-white">
                                           N° d'intervention
@@ -129,7 +121,6 @@
                                           Immatriculation
                                        </th>
                                        <th class="w-1/6 min-w-[120px] text-sm font-semibold text-white py-4 lg:py-4 px-1 lg:px-2 border-r border-white">
-                                         
                                        </th>
                                     </tr>
                                  </thead>

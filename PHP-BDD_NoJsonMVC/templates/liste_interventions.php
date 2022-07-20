@@ -9,7 +9,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.tailgrids.com/tailgrids-fallback.css" />
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <script src="script.js" type="text/javascript"></script>
+    <script src="../js/loadData.js" type="text/javascript"></script>
+    <script src="../js/submits.js" type="text/javascript"></script>
 </head>
 <body class="h-screen bg-no-repeat bg-cover">
       <nav
@@ -23,14 +24,6 @@
             >Facturation</a><a id="navLink4" href="liste_interventions.php"
             class="text-white text-base md:text-lg hover:text-red-600 hover:underline"
             >Interventions en cours</a>
-        </div>
-        <div class="flex justify-end invisible sm:visible sm:pr-3 sm:gap-4">
-          <div class="text-white text-base sm:pt-1 sm:text-lg">
-            <a data-bs-toggle="tooltip"
-              data-bs-placement="left"
-              title="Vers mes notes"
-              href="/account"></a>
-          </div>
         </div>
       </nav>
       <div class="flex justify-center mr-5 py-4 px-4 sm:px-6 lg:px-8">
