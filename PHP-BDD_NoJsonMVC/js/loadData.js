@@ -9,7 +9,7 @@ function finishLoad() {
     success: function (response) {
       if (response["status"] == 1) {
         $("#finishTab").html(response["html"]);
-      } else if (response["status"] == 2) {
+      } else {
         alert(response["msg"]);
       }
     },

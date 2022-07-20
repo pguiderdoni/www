@@ -7,13 +7,13 @@
     <title>Facturation</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.tailgrids.com/tailgrids-fallback.css" />
     <script src="https://kit.fontawesome.com/a1b11d373d.js" crossorigin="anonymous"></script>
     <script src="../js/loadData.js" type="text/javascript"></script>
     <script src="../js/submits.js" type="text/javascript"></script>
 </head>
-<body class="h-screen bg-no-repeat bg-cover">
-    <nav
-        class="grid grid-cols-3 content-center h-14 bg-gradient-to-r from-slate-400 to-neutral-900">
+<body class="h-screen bg-no-repeat bg-cover" style="background-image: url(img/blancN.jpg) ;">
+<nav class="grid grid-cols-3 content-center h-14 bg-gradient-to-r from-slate-400 to-neutral-900">
         <div
           class="col-span-3 sm:col-span-2 flex justify-around sm:justify-start sm:gap-5 pt-8 sm:pt-1 sm:pl-4">
           <a id="navLink2" href="base.php"
@@ -25,17 +25,17 @@
             >Interventions en cours</a>
         </div>
       </nav>
-      <div class="flex justify-start ml-80 mr-5 py-4 px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-center mr-5 py-4 px-4 sm:px-6 lg:px-8">
          <div class="grid align max-w-md w-full space-y-4">
             <div class="grid">
                <h2 class="mt-2 text-center text-3xl font-extrabold text-black">
-                  Interventions facturées
+                  Factures
                </h2>
-               <button onclick="facturesLoad();" class="px-2 w-20 flex self-center align-center border border-transparent text-sm font-medium rounded-full text-white bg-gradient-to-r from-slate-400 to-neutral-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+               <button onclick="facturesLoad();" class="px-2 w-20 flex self-center border border-transparent text-sm font-medium rounded-full text-white bg-gradient-to-r from-slate-400 to-neutral-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
               Actualiser
             </button>
             </div>
-               <section class="bg-white ">
+               <section class="bg-white">
                   <div class="container">
                      <div class="flex flex-wrap -mx-4">
                         <div class="w-full px-0">

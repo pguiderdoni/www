@@ -7,13 +7,13 @@
     <title>Enregistrement intervention</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.tailgrids.com/tailgrids-fallback.css"/>
     <script src="../js/newVehicule.js" type="text/javascript"></script>
     <script src="../js/loadData.js" type="text/javascript"></script>
     <script src="../js/submits.js" type="text/javascript"></script>
 </head>
-<body class="h-screen bg-no-repeat bg-cover">
-      <nav
-        class="flex grid grid-cols-3 content-center h-14 bg-gradient-to-r from-slate-400 to-neutral-900">
+<body class="h-screen bg-no-repeat bg-cover" style="background-image: url(img/blancN.jpg) ;">
+<nav class="grid grid-cols-3 content-center h-14 bg-gradient-to-r from-slate-400 to-neutral-900">
         <div
           class="col-span-3 sm:col-span-2 flex justify-around sm:justify-start sm:gap-5 pt-8 sm:pt-1 sm:pl-4">
           <a id="navLink2" href="base.php"
@@ -25,7 +25,8 @@
             >Interventions en cours</a>
         </div>
       </nav>
-<div class="flex justify-start gap-x-48">
+<!-- <div class="flex justify-start gap-x-48"> -->
+  <div class="container flex">
 <div class="grid align mt-5 mr-5 ml-40 py-4 px-2 sm:px-6 lg:px-2">
       <div class="grid">
         <h2 class="text-center text-3xl font-extrabold text-black mb-5">
@@ -88,8 +89,8 @@
           </div>
       </form> 
 </div>
-<div class="flex justify-center mt-5 mr-5 py-4 px-2 sm:px-6 lg:px-2">
-         <div class="grid max-w-md w-full space-y-2">
+<div class="flex justify-center ml-32 mr-5 py-4 px-4 sm:px-6 lg:px-8">
+         <div class="grid align-start max-w-md w-full space-y-2">
             <div class="grid">
                <h2 class="mt-2 text-center text-3xl font-extrabold text-black">
                   Véhicules terminés
@@ -98,29 +99,29 @@
               Actualiser
             </button>
             </div>
-               <section class="bg-white ">
+            <section class="bg-white">
                   <div class="container">
                      <div class="flex flex-wrap -mx-4">
                         <div class="w-full px-0">
                            <div class="max-w-full overflow-x-auto">
                               <table class="table-auto w-full">
                                  <thead>
-                                    <tr class="bg-gradient-to-r from-slate-400 to-neutral-900 text-center"> 
-                                    <th class="w-1/6 min-w-[120px] text-sm font-semibold text-white py-4 lg:py-4 px-1 lg:px-2 border-r border-white">
-                                       </th>                
-                                    <th class="w-1/6 min-w-[120px] text-sm font-semibold text-white py-4 lg:py-4 px-1 lg:px-2 border-r border-white">
+                                    <tr class="bg-gradient-to-r from-slate-400 to-neutral-900 text-center">
+                                    <th class="w-1/6 min-w-[120px] text-sm font-semibold text-white py-3 lg:py-3 px-1 lg:px-2 border-r border-white">
+                                       </th>
+                                      <th class="w-1/6 min-w-[120px] text-sm font-semibold text-white py-3 lg:py-3 px-1 lg:px-2 border-r border-white">
                                           N° d'intervention
                                        </th>
-                                    <th class="w-1/6 min-w-[120px] text-sm font-semibold text-white py-4 lg:py-4 px-1 lg:px-2 border-r border-white">
+                                       <th class="w-1/6 min-w-[120px] text-sm font-semibold text-white py-3 lg:py-3 px-1 lg:px-2 border-r border-white">
                                           Marque
                                        </th>
-                                       <th class="w-1/6 min-w-[120px] text-sm font-semibold text-white py-4 lg:py-4 px-1 lg:px-2 border-r border-white">
+                                       <th class="w-1/6 min-w-[120px] text-sm font-semibold text-white py-3 lg:py-3 px-1 lg:px-2 border-r border-white">
                                           Modèle
                                        </th>
-                                       <th class="w-1/6 min-w-[120px] text-sm font-semibold text-white py-4 lg:py-4 px-1 lg:px-2 border-r border-white">
+                                       <th class="w-1/6 min-w-[120px] text-sm font-semibold text-white py-3 lg:py-3 px-1 lg:px-2 border-r border-white">
                                           Immatriculation
                                        </th>
-                                       <th class="w-1/6 min-w-[120px] text-sm font-semibold text-white py-4 lg:py-4 px-1 lg:px-2 border-r border-white">
+                                       <th class="w-1/6 min-w-[120px] text-sm font-semibold text-white py-3 lg:py-3 px-1 lg:px-2 border-r border-white"> 
                                        </th>
                                     </tr>
                                  </thead>
@@ -132,8 +133,8 @@
                      </div>
                   </div>
                </section>
-            </div>
+           </div>
+        </div>
       </div>
-  </div>
 </body>
 </html>

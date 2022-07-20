@@ -59,12 +59,12 @@ switch($_POST['request']){
                 $marque = $data2['nom_marque'];  
                 $modele = $data2['nom_modele'];
                 $html .= '<tr>
-                            <th class="border border-y-slate-700 py-2 text-xs"><a onclick="facturation('.$interv.');" class="underline text-blue-600" href="../templates/base.php">Payer</a></th>
+                            <th class="border border-y-slate-700 py-2 text-xs"><a type="btn" onclick="facturation('.$interv.');" class="underline text-blue-600" href="../templates/base.php">Payer</a></th>
                             <th class="border border-y-slate-700 py-2 text-xs">'.$interv.'</th>
                             <th class="border border-y-slate-700 py-2 text-xs">'.$marque.'</th>
                             <th class="border border-y-slate-700 py-2 text-xs">'.$modele.'</th>
                             <th class="border border-y-slate-700 py-2 text-xs">'.$immat.'</th>
-                            <th class="border border-y-slate-700 py-2 text-xs"><a onclick="interventionNonOk('.$interv.');" class="underline text-blue-600" href="../templates/base.php">Non terminée</a></th>
+                            <th class="border border-y-slate-700 py-2 text-xs"><a type="btn" onclick="interventionNonOk('.$interv.');" class="underline text-blue-600" href="../templates/base.php">Non terminée</a></th>
                         </tr>';
                 $status = 1;
                 }
