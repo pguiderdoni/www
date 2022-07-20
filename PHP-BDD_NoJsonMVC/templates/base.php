@@ -14,19 +14,18 @@
 </head>
 <body class="h-screen bg-no-repeat bg-cover" style="background-image: url(img/blancN.jpg) ;">
 <nav class="grid grid-cols-3 content-center h-14 bg-gradient-to-r from-slate-400 to-neutral-900">
-        <div
-          class="col-span-3 sm:col-span-2 flex justify-around sm:justify-start sm:gap-5 pt-8 sm:pt-1 sm:pl-4">
-          <a id="navLink2" href="base.php"
-            class="text-white text-base md:text-lg hover:text-red-600 hover:underline"
-            >Engregistrer un véhicule</a><a id="navLink3" href="facturation.php"
-            class="text-white text-base md:text-lg hover:text-red-600 hover:underline"
-            >Facturation</a><a id="navLink4" href="liste_interventions.php"
-            class="text-white text-base md:text-lg hover:text-red-600 hover:underline"
-            >Interventions en cours</a>
-        </div>
-      </nav>
-<!-- <div class="flex justify-start gap-x-48"> -->
-  <div class="container flex">
+    <div
+      class="col-span-3 sm:col-span-2 flex justify-around sm:justify-start sm:gap-5 pt-8 sm:pt-1 sm:pl-4">
+      <a id="navLink2" href="base.php"
+        class="text-white text-base md:text-lg hover:text-red-600 hover:underline"
+        >Engregistrer un véhicule</a><a id="navLink3" href="facturation.php"
+        class="text-white text-base md:text-lg hover:text-red-600 hover:underline"
+        >Facturation</a><a id="navLink4" href="liste_interventions.php"
+        class="text-white text-base md:text-lg hover:text-red-600 hover:underline"
+        >Interventions en cours</a>
+    </div>
+</nav>
+<div class="flex container mx-auto px-4">
 <div class="grid align mt-5 mr-5 ml-40 py-4 px-2 sm:px-6 lg:px-2">
       <div class="grid">
         <h2 class="text-center text-3xl font-extrabold text-black mb-5">
@@ -88,8 +87,8 @@
             </button>
           </div>
       </form> 
-</div>
-<div class="flex justify-center ml-32 mr-5 py-4 px-4 sm:px-6 lg:px-8">
+  </div>
+  <div class="flex justify-center ml-32 mt-5 mr-5 py-4 px-4 sm:px-6 lg:px-8">
          <div class="grid align-start max-w-md w-full space-y-2">
             <div class="grid">
                <h2 class="mt-2 text-center text-3xl font-extrabold text-black">
@@ -136,5 +135,20 @@
            </div>
         </div>
       </div>
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+  
 </body>
 </html>
