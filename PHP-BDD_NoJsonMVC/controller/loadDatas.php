@@ -29,7 +29,7 @@ switch($_POST['request']){
                             <th class="border border-y-slate-700 py-2 text-xs">'.$marque.'</th>
                             <th class="border border-y-slate-700 py-2 text-xs">'.$modele.'</th>
                             <th class="border border-y-slate-700 py-2 text-xs">'.$immat.'</th>
-                            <th class="border border-y-slate-700 py-2 text-xs"><a type="btn" onclick="interventionOk('.$interv.');" class="underline text-blue-600" href="templates/liste_interventions.php">Intervention terminée</a></th>
+                            <th class="border border-y-slate-700 py-2 text-xs"><a type="btn" onclick="interventionOk('.$interv.');" class="underline text-blue-600" href="../templates/liste_interventions.php">Intervention terminée</a></th>
                         </tr>';
                 $status = 1;
                 }
@@ -98,7 +98,7 @@ switch($_POST['request']){
                             <th class="border border-y-slate-700 py-2 text-xs">'.$marque.'</th>
                             <th class="border border-y-slate-700 py-2 text-xs">'.$modele.'</th>
                             <th class="border border-y-slate-700 py-2 text-xs">'.$immat.'</th>
-                            <th class="border border-y-slate-700 py-2 text-xs"><a type="btn" onclick="interventionNonOk('.$interv.');" class="underline text-blue-600" href="templates\facturation.php">Non terminée</a></th>
+                            <th class="border border-y-slate-700 py-2 text-xs"><a type="btn" onclick="interventionNonOk('.$interv.');" class="underline text-blue-600" href="../templates\facturation.php">Non terminée</a></th>
                         </tr>';
                 $status = 2;
                 }

@@ -1,7 +1,7 @@
 function interventionOk(data) {
   var id_int = data;
   $.ajax({
-    url: "controller/submits.php",
+    url: "../controller/submits.php",
     dataType: "JSON",
     type: "POST",
     data: {
@@ -21,7 +21,7 @@ function interventionOk(data) {
 function interventionNonOk(data) {
   var id_int = data;
   $.ajax({
-    url: "controller/submits.php",
+    url: "../controller/submits.php",
     dataType: "JSON",
     type: "POST",
     data: {
@@ -41,7 +41,7 @@ function interventionNonOk(data) {
 function facturation(data) {
   var id_int = data;
   $.ajax({
-    url: "controller/submits.php",
+    url: "../controller/submits.php",
     dataType: "JSON",
     type: "POST",
     data: {
