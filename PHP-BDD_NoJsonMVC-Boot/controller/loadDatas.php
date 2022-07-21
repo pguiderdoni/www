@@ -25,11 +25,11 @@ switch($_POST['request']){
                 $marque = $data2['nom_marque'];  
                 $modele = $data2['nom_modele'];
                 $html .= '<tr> 
-                            <th class="col-1 text-center align-middle">'.$interv.'</th>
-                            <th class="col-3 text-center align-middle">'.$marque.'</th>
-                            <th class="col-3 text-center align-middle">'.$modele.'</th>
-                            <th class="col-3 text-center align-middle">'.$immat.'</th>
-                            <th class="col-1 text-center align-middle"><a type="" onclick="interventionOk('.$interv.');" class="" href="../templates/liste_interventions.html">Intervention terminée</a></th>
+                            <th class="col-1 text-center align-middle py-2">'.$interv.'</th>
+                            <th class="col-3 text-center align-middle py-2">'.$marque.'</th>
+                            <th class="col-3 text-center align-middle py-2">'.$modele.'</th>
+                            <th class="col-3 text-center align-middle py-2">'.$immat.'</th>
+                            <th class="col-1 text-center align-middle py-2"><a type="" onclick="interventionOk('.$interv.');" class="" href="../templates/liste_interventions.html">Intervention terminée</a></th>
                         </tr>';
                 $status = 1;
                 }
@@ -94,11 +94,11 @@ switch($_POST['request']){
                 $marque = $data2['nom_marque'];  
                 $modele = $data2['nom_modele'];
                 $html .= '<tr> 
-                <th class="col-1 text-center align-middle">'.$interv.'</th>
-                <th class="col-3 text-center align-middle">'.$marque.'</th>
-                <th class="col-3 text-center align-middle">'.$modele.'</th>
-                <th class="col-3 text-center align-middle">'.$immat.'</th>
-                <th class="col-1 text-center align-middle"><a type="" onclick="interventionNonOk('.$interv.');" class="" href="../templates/facturation.html">Non payée</a></th>
+                <th class="col-1 text-center align-middle py-3">'.$interv.'</th>
+                <th class="col-3 text-center align-middle py-3">'.$marque.'</th>
+                <th class="col-3 text-center align-middle py-3">'.$modele.'</th>
+                <th class="col-3 text-center align-middle py-3">'.$immat.'</th>
+                <th class="col-1 text-center align-middle py-3"><a type="" onclick="interventionNonOk('.$interv.');" class="" href="../templates/facturation.html">Non payée</a></th>
             </tr>';
                 $status = 2;
                 }

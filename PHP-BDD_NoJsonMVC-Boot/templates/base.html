@@ -15,7 +15,7 @@
     <script src="../js/loadData.js" type="text/javascript"></script>
     <script src="../js/submits.js" type="text/javascript"></script>
   </head>
-  <body style="background-image: url('img/blancN.jpg'); height: 100vh">
+  <body style="background-image: url('img/blancN.jpg'); height: 100vh" class="bg-image img-fluid">
     <div
       class="container bg-image img-fluid">
       <nav class="navbar navbar-expand-md bg-dark py-3 sticky-top">
@@ -58,7 +58,7 @@
         <div class="row mt-5 d-flex align-content-center">
         <div class="col-4">
           <span><h2>Enregistrement</h2></span>
-          <form>
+          <form action="javascript:newVehicule();" method="POST">
             <span>Marque</span>
             <select id="carBrand" onchange="modelesLoad();" class="form-select mb-3" aria-label="Default select example">
               <option selected>-</option>
@@ -71,11 +71,14 @@
             <select class="form-select mb-3" aria-label="Default select example">
               <option selected>-</option>
             </select>
-            <span>Option 2</span>
-            <select class="form-select mb-3" aria-label="Default select example">
-              <option selected>-</option>
-            </select>
-            <span class=" mb-3 d-flex justify-content-between"><label for="carImmat" class="sr-only fs-4">Immatriculation:</label>
+            <span class=" mb-3 d-flex justify-content-between"><label for="carPower" class="sr-only fs-5">Puissance:</label>
+              <input
+                id="carPower"
+                name="carPower"
+                type="text"
+                class="rounded-2 py-2"
+                placeholder="Puissance"/></span>
+            <span class=" mb-3 d-flex justify-content-between"><label for="carImmat" class="sr-only fs-5">Immatriculation:</label>
             <input
               id="carImmat"
               name="carImmat"

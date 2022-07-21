@@ -4,7 +4,7 @@ function newVehicule() {
   var immatriculation = $("#carImmat").val();
   var puissance = $("#carPower").val();
   $.ajax({
-    url: "controller/newVehicule.php",
+    url: "../controller/newVehicule.php",
     dataType: "JSON",
     type: "POST",
     data: {
