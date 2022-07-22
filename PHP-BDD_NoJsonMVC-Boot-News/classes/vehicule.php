@@ -6,8 +6,6 @@ class vehicule{
     private $marque;
     private $modele;
     private $immat;
-    private $puissance;
-
 
 public function __construct ($id){
 
@@ -19,12 +17,12 @@ public function __construct ($id){
 
 public function generate(){  
    
-    $requete = "INSERT INTO `vehicules` (`nom_marque`, `nom_modele`,`puissance`,`immat`) VALUES ('". mysqli_real_escape_string($GLOBALS['Database'],$this->marque) ."','". mysqli_real_escape_string($GLOBALS['Database'],$this->modele)."','". mysqli_real_escape_string($GLOBALS['Database'],$this->puissance)."','". mysqli_real_escape_string($GLOBALS['Database'],$this->immat)."')";
+    $requete = "INSERT INTO `vehicules` (`nom_marque`, `nom_modele`,`immat`) VALUES ('". mysqli_real_escape_string($GLOBALS['Database'],$this->marque) ."','". mysqli_real_escape_string($GLOBALS['Database'],$this->modele)."','". mysqli_real_escape_string($GLOBALS['Database'],$this->immat)."')";
     $result = mysqli_query($GLOBALS['Database'], $requete) or die;
 }
 
 public function update(){ 
-$requete = "UPDATE `vehicules` SET `nom_marque`='". mysqli_real_escape_string($GLOBALS['Database'],$this->marque) ."', `nom_modele`='". mysqli_real_escape_string($GLOBALS['Database'],$this->modele) ."',`immat_vehicule`='". mysqli_real_escape_string($GLOBALS['Database'],$this->immat) ."',`puissance`='". mysqli_real_escape_string($GLOBALS['Database'],$puissance) ."'";
+$requete = "UPDATE `vehicules` SET `nom_marque`='". mysqli_real_escape_string($GLOBALS['Database'],$this->marque) ."', `nom_modele`='". mysqli_real_escape_string($GLOBALS['Database'],$this->modele) ."',`immat_vehicule`='". mysqli_real_escape_string($GLOBALS['Database'],$this->immat) ."'";
 mysqli_query($GLOBALS['Database'], $requete) or die;
 }
 
@@ -35,7 +33,6 @@ public function checkData($id){
         $this->marque = $data['nom_marque'];
         $this->modele = $data['nom_modele'];
         $this->immat = $data['immat'];
-        $this->puissance = $data['puissance'];
     }
 }
 
@@ -56,12 +53,6 @@ public function setImmat($immat){
 }
 public function getImmat(){
     return $this->immat;
-}
-public function setPuissance($puissance){
-    $this->puissance = $puissance;
-}
-public function getPuissance(){
-    return $this->puissance;
 }
 
 
